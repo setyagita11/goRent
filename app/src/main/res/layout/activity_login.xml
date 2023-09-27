@@ -16,7 +16,7 @@
         app:layout_constraintHorizontal_bias="0.102"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45"
+        app:layout_constraintVertical_bias="0.35000002"
         app:srcCompat="@drawable/logo" />
 
     <TextView
@@ -46,39 +46,40 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
-
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/inputUsername"
         android:layout_width="340dp"
         android:layout_height="55dp"
         android:layout_marginTop="52dp"
+        android:background="@drawable/bg_input"
         android:ems="10"
-        android:hint="Email"
+        android:hint="Username"
         android:inputType="text"
         android:paddingLeft="18dp"
-        android:background="@drawable/bg_input"
+        android:textColorHint="#66000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/inputPassword"
         android:layout_width="340dp"
         android:layout_height="55dp"
         android:layout_marginTop="10dp"
+        android:background="@drawable/bg_input"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         android:paddingLeft="18dp"
-        android:background="@drawable/bg_input"
+        android:textColorHint="#66000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/inputUsername" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
+        android:id="@+id/btnLogin"
         android:layout_width="341dp"
         android:layout_height="55dp"
         android:layout_marginTop="22dp"
@@ -89,12 +90,12 @@
         android:background="@drawable/bg_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+        app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
 
     <View
         android:id="@+id/view"
         android:layout_width="wrap_content"
-        android:layout_height="350dp"
+        android:layout_height="250dp"
         android:background="@drawable/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
