@@ -4,7 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DashboardActivity">
+    tools:context=".InputActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:orientation="vertical"
+        android:background="@drawable/shape_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,14 +40,14 @@
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                app:srcCompat="@drawable/ic_home_aktif" />
+                app:srcCompat="@drawable/ic_home" />
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:gravity="center"
-                android:textColor="@color/bg_elemen"
+                android:textColor="@color/black"
                 android:text="home" />
         </LinearLayout>
 
@@ -51,7 +62,7 @@
                 android:id="@+id/imageView4"
                 android:layout_width="match_parent"
                 android:layout_height="53dp"
-                app:srcCompat="@drawable/ic_car" />
+                app:srcCompat="@drawable/ic_car_aktif" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -59,7 +70,7 @@
                 android:layout_height="20dp"
                 android:text="Kendaraan"
                 android:gravity="center"
-                android:textColor="@color/black"/>
+                android:textColor="@color/bg_elemen"/>
 
 
         </LinearLayout>
@@ -89,14 +100,4 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="175dp"
-        android:orientation="vertical"
-        android:background="@drawable/shape_top"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
