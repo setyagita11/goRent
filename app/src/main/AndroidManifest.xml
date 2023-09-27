@@ -14,7 +14,7 @@
         android:theme="@style/Theme.GoRent"
         tools:targetApi="31">
         <activity
-            android:name=".InputActivity"
+            android:name=".InputKendaraanActivity"
             android:exported="false"
             android:label="@string/title_activity_input"
             android:theme="@style/Theme.GoRent" />

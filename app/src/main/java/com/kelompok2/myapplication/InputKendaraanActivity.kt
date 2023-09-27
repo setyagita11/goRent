@@ -3,9 +3,9 @@ package com.kelompok2.myapplication
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class InputActivity : AppCompatActivity() {
+class InputKendaraanActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_input)
+        setContentView(R.layout.activity_input_kendaraan)
     }
 }
