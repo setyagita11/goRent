@@ -14,6 +14,12 @@
         android:theme="@style/Theme.GoRent"
         tools:targetApi="31">
         <activity
+            android:name=".DetailKendaraanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdapterKendaraanActivity"
+            android:exported="false" />
+        <activity
             android:name=".InputKendaraanActivity"
             android:exported="false"
             android:label="@string/title_activity_input"
@@ -33,8 +39,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
     </application>
 
 </manifest>

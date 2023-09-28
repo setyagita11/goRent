@@ -104,6 +104,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/spinner" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button"
+        android:layout_width="340dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="88dp"
+        android:background="@drawable/bg_button"
+        android:text="UPDATE"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button2"
+        android:layout_width="340dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/bg_button"
+        android:text="TAMBAH"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="90dp"
@@ -124,7 +149,6 @@
             android:orientation="vertical"
             android:padding="10dp">
 
-
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
@@ -138,6 +162,7 @@
                 android:gravity="center"
                 android:text="home"
                 android:textColor="@color/black" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -160,7 +185,6 @@
                 android:gravity="center"
                 android:text="Kendaraan"
                 android:textColor="@color/bg_elemen" />
-
 
         </LinearLayout>
 
@@ -189,25 +213,11 @@
 
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
-        android:layout_width="340dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="18dp"
-        android:background="@drawable/bg_button"
-        android:text="TAMBAH"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
-
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="165dp"
         android:layout_height="55dp"
         android:layout_marginStart="36dp"
-
         android:layout_marginTop="10dp"
         android:background="@drawable/bg_input"
         app:layout_constraintStart_toStartOf="parent"
