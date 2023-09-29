@@ -14,6 +14,19 @@
         android:theme="@style/Theme.GoRent"
         tools:targetApi="31">
         <activity
+            android:name=".DetailPesananActivity"
+            android:exported="false"
+            android:label="@string/title_activity_detail_pesanan"
+            android:theme="@style/Theme.GoRent" />
+        <activity
+            android:name=".AdapterPesananActivity"
+            android:exported="false"
+            android:label="@string/title_activity_adapter_pesanan"
+            android:theme="@style/Theme.GoRent" />
+        <activity
+            android:name=".InputPesananActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailKendaraanActivity"
             android:exported="false" />
         <activity
