@@ -23,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
             if (username.text.isNotEmpty() && password.text.isNotEmpty()) {
                 startActivity(
                     Intent(this, DashboardActivity::class.java)
-                        .putExtra("username", username.text)
+                        .putExtra("username", username.text.toString())
                 )
                 alert("Selamat datang di Go-Rent ${username.text}")
                 finish()
