@@ -12,5 +12,5 @@ data class Kendaraan(
     @ColumnInfo (name = "merk")      val merk       : String,
     @ColumnInfo(name = "jenis")      val jenis      : String,
     @ColumnInfo(name = "harga_sewa") val hargasewa  : Int,
-    @ColumnInfo(name = "persediaan") val persediaan : Int,
+    @ColumnInfo(name = "persediaan") val persediaan : Int
 )
