@@ -8,7 +8,7 @@
     tools:context=".InputPesananActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/linearLayout7"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@drawable/shape_top"
@@ -30,31 +30,32 @@
                 android:paddingLeft="-20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_menu" />
+                app:srcCompat="@drawable/setting" />
 
             <ImageView
                 android:id="@+id/imageView7"
-                android:layout_width="55dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="15dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="17dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/profile" />
 
             <TextView
-                android:id="@+id/tvWellcome"
+                android:id="@+id/textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="27dp"
                 android:fontFamily="@font/baloo"
                 android:text="PESANAN"
                 android:textColor="@color/white"
                 android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageView7"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.45" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -69,7 +70,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
 
         <EditText
             android:id="@+id/inputUsername"
@@ -114,32 +115,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="165dp"
-            android:layout_height="55dp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_input"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="165dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_input"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
 
-        <Spinner
-            android:id="@+id/spinner2"
-            android:layout_width="165dp"
-            android:layout_height="55dp"
-            android:layout_weight="1"
-            android:layout_marginStart="7dp"
-            android:background="@drawable/bg_input"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/spinner" />
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="165dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="7dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/spinner" />
 
-    </LinearLayout>
+        </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button2"
@@ -158,9 +159,9 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="55dp"
+            android:layout_marginTop="22dp"
             android:background="@drawable/bg_button"
             android:text="UPDATE"
-            android:layout_marginTop="22dp"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
