@@ -6,12 +6,11 @@ import androidx.room.PrimaryKey
 
 
 @Entity(tableName = "kendaraan")
-data class kendaraan(
+data class Kendaraan(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")         val id         : Int,
     @ColumnInfo (name = "merk")      val merk       : String,
-    @ColumnInfo(name = "harga")      val harga      : Int,
     @ColumnInfo(name = "jenis")      val jenis      : String,
-    @ColumnInfo(name = "harga sewa") val hargasewa  : Int,
+    @ColumnInfo(name = "harga_sewa") val hargasewa  : Int,
     @ColumnInfo(name = "persediaan") val persediaan : Int,
 )
