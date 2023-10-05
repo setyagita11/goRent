@@ -92,6 +92,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
+            android:id="@+id/btnHome"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -102,7 +103,7 @@
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
                 android:layout_height="28dp"
-                app:srcCompat="@drawable/ic_home_aktif" />
+                app:srcCompat="@drawable/ic_home" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -110,7 +111,7 @@
                 android:layout_height="20dp"
                 android:gravity="center"
                 android:text="Home"
-                android:textColor="@color/bg_elemen" />
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
@@ -125,7 +126,7 @@
                 android:id="@+id/imageView4"
                 android:layout_width="match_parent"
                 android:layout_height="31dp"
-                app:srcCompat="@drawable/ic_car" />
+                app:srcCompat="@drawable/ic_car_aktif" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -133,11 +134,12 @@
                 android:layout_height="20dp"
                 android:gravity="center"
                 android:text="Kendaraan"
-                android:textColor="@color/black" />
+                android:textColor="@color/bg_elemen" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btnPesanan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="-2.5dp"
@@ -169,8 +171,7 @@
         android:layout_height="483dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"        app:backgroundTint="@color/bg_elemen"
-
+        android:layout_marginEnd="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"

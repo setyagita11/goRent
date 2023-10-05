@@ -194,14 +194,14 @@
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
                 android:layout_height="28dp"
-                app:srcCompat="@drawable/ic_home_aktif" />
+                app:srcCompat="@drawable/ic_home" />
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:gravity="center"
-                android:textColor="@color/bg_elemen"
+                android:textColor="@color/black"
                 android:text="Home" />
 
         </LinearLayout>
@@ -241,14 +241,14 @@
                 android:id="@+id/imageView5"
                 android:layout_width="match_parent"
                 android:layout_height="31dp"
-                app:srcCompat="@drawable/ic_checkout" />
+                app:srcCompat="@drawable/ic_checkout_aktif" />
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Pesanan"
-                android:textColor="@color/black"
+                android:textColor="@color/bg_elemen"
                 android:gravity="center"/>
 
         </LinearLayout>

@@ -90,6 +90,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
+            android:id="@+id/btnHome"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -113,6 +114,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btnKendaraan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -136,6 +138,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btnPesanan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
