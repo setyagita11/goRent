@@ -10,22 +10,22 @@ import androidx.room.Update
 interface DAO {
    //
     @Query("SELECT*FROM kendaraan ")
-    fun getAllKendaraan():List<Kendaraan>
+    fun getAllKendaraan() : List<Kendaraan>
     @Insert
-    fun Insert(kendaraan: Kendaraan)
+    fun InsertKendaraan(kendaraan: Kendaraan)
     @Update
-    fun Update(kendaraan: Kendaraan)
+    fun UpdateKendaraan(kendaraan: Kendaraan)
     @Delete
-    fun Delete(kendaraan: Kendaraan)
+    fun DeleteKendaraan(kendaraan: Kendaraan)
 
 
       //pesanan
     @Insert
-    fun Insert(pesanan: Pesanan)
+    fun InsertPesanan(pesanan: Pesanan)
     @Update
-    fun Update(pesanan: Pesanan)
+    fun UpdatePesanan(pesanan: Pesanan)
     @Delete
-    fun Delete(pesanan: Pesanan)
+    fun DeletePesanan(pesanan: Pesanan)
     @Query("SELECT*FROM pesanan ")
     fun getAllPesanan():List<Pesanan>
 }

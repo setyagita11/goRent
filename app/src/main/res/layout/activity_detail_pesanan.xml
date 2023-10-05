@@ -160,6 +160,16 @@
                 android:textColor="@color/bg_elemen"
                 android:textSize="17sp" />
 
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:paddingLeft="10dp"
+                android:text=":"
+                android:textColor="@color/bg_elemen"
+                android:textSize="17sp" />
+
 
         </LinearLayout>
 
