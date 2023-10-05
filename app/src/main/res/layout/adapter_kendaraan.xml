@@ -22,7 +22,8 @@
             android:id="@+id/imageView8"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:paddingLeft="13dp"
+            android:paddingLeft="10dp"
+            android:layout_gravity="center_vertical"
             android:src="@drawable/mobil" />
 
         <LinearLayout
