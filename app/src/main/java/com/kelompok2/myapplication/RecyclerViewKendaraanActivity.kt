@@ -22,5 +22,10 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
 
         find.btnHome.setOnClickListener { onBackPressed() }
 
+        find.btnTambahKendaraan.setOnClickListener {
+        startActivity(
+            Intent(this, InputKendaraanActivity::class.java ))
+        }
+
     }
 }

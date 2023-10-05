@@ -22,5 +22,10 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
         }
 
         find.btnHome.setOnClickListener { onBackPressed() }
+
+        find.btnTambahPesanan.setOnClickListener {
+            startActivity(
+                Intent(this, InputPesananActivity::class.java ))
+        }
     }
 }
