@@ -1,12 +1,16 @@
 package com.kelompok2.myapplication
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kelompok2.myapplication.GoRent.AdapterKendaraan
 import com.kelompok2.myapplication.GoRent.DBgoRent
+import com.kelompok2.myapplication.GoRent.Kendaraan
 import com.kelompok2.myapplication.databinding.ActivityRecyclerViewKendaraanBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,7 +29,16 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
         find=ActivityRecyclerViewKendaraanBinding.inflate(layoutInflater)
         setContentView(find.root)
 
-        adapter = AdapterKendaraan(ArrayList())
+        adapter = AdapterKendaraan(arrayListOf(),
+            object : AdapterKendaraan.kendaraanv1{
+                override fun delete (kendaraan: Kendaraan) {
+                    deletedata(kendaraan)
+                }
+
+                override fun update(kendaraan: Kendaraan) {
+                    TODO("Not yet implemented")
+                }
+            })
 
         find.btnPesanan.setOnClickListener {
             onBackPressed()
@@ -47,6 +60,31 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
 
     }
 
+    private fun deletedata(kendaraan: Kendaraan) {
+
+       val dialog= AlertDialog.Builder(this)
+
+        dialog.apply {
+
+            setTitle("Konfirmasi hapus data")
+            setMessage("Apakah anda yakin menghapus data${kendaraan.merk}?")
+
+            setNegativeButton("Batal"){
+                        dialogInterface:DialogInterface, i:Int -> dialogInterface.dismiss()
+            }
+            setPositiveButton("Hapus") {
+                dialogInterface:DialogInterface,i :Int-> dialogInterface.dismiss()
+                CoroutineScope(Dispatchers.IO).launch{
+                    db.dao().DeleteKendaraan(kendaraan)
+                }
+                recreate()
+                alert("data ${kendaraan.merk} berhasil dihapus")
+                }
+                dialog.show()
+        }
+    }
+
+
     override fun onResume() {
         super.onResume()
         tampilDataKendaraan()
@@ -62,6 +100,12 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
             }
         }
         find.listKndraan.adapter = adapter
+    }
+
+    private fun alert(msg: String) {
+
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+
     }
 
 }
