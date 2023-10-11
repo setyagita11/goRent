@@ -69,6 +69,8 @@
                 android:background="@drawable/bg_input"
                 android:drawableLeft="@drawable/ic_search"
                 android:drawablePadding="10dp"
+                android:textColor="#000000"
+                android:textColorHint="#66000000"
                 android:ems="10"
                 android:hint="Cari"
                 android:inputType="text"
@@ -191,4 +193,3 @@
         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

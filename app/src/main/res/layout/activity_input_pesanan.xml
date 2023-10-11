@@ -81,6 +81,8 @@
             android:hint="Nama Pemesan"
             android:inputType="text"
             android:paddingLeft="18dp"
+            android:textColor="#000000"
+            android:textColorHint="#66000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,6 +98,8 @@
             android:hint="Kendaraan"
             android:inputType="text"
             android:paddingLeft="18dp"
+            android:textColor="#000000"
+            android:textColorHint="#66000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="parent"
@@ -111,6 +115,8 @@
             android:hint="Alamat"
             android:inputType="text"
             android:paddingLeft="18dp"
+            android:textColor="#000000"
+            android:textColorHint="#66000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
@@ -126,7 +132,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="5dp"
-
+            android:textColor="#000000"
             android:textSize="12sp"
             android:text="Pilih Kendaraan :" />
 
@@ -135,6 +141,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="5dp"
+            android:textColor="#000000"
             android:textSize="12sp"
             android:text="Status :" />
 
@@ -154,6 +161,8 @@
                 android:layout_width="165dp"
                 android:layout_height="55dp"
                 android:layout_weight="1"
+                android:textColor="#66000000"
+                android:textColorHint="#66000000"
                 android:background="@drawable/bg_input"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
@@ -164,6 +173,8 @@
                 android:layout_height="55dp"
                 android:layout_marginStart="7dp"
                 android:layout_weight="1"
+                android:textColor="#66000000"
+                android:textColorHint="#66000000"
                 android:background="@drawable/bg_input"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/spinner" />

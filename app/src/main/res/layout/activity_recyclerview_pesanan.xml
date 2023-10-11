@@ -71,7 +71,9 @@
             android:ems="10"
             android:hint="Cari"
             android:inputType="text"
-            android:paddingLeft="15dp" />
+            android:paddingLeft="15dp"
+            android:textColor="#000000"
+            android:textColorHint="#66000000" />
 
     </LinearLayout>
 
@@ -187,7 +189,8 @@
         app:backgroundTint="@color/bg_elemen"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout9"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_add" />
+        app:srcCompat="@drawable/ic_add"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

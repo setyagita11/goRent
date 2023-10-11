@@ -66,6 +66,8 @@
             android:ems="10"
             android:drawableLeft="@drawable/ic_search"
             android:paddingLeft="15dp"
+            android:textColor="#000000"
+            android:textColorHint="#66000000"
             android:drawablePadding="10dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
