@@ -43,7 +43,7 @@
                 app:srcCompat="@drawable/profile" />
 
             <TextView
-                android:id="@+id/textview"
+                android:id="@+id/headingKendaraan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/baloo"

@@ -3,6 +3,7 @@ package com.kelompok2.myapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.kelompok2.myapplication.GoRent.AdapterKendaraan
 import com.kelompok2.myapplication.GoRent.DBgoRent
@@ -19,6 +20,14 @@ class InputKendaraanActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         find= ActivityInputKendaraanBinding.inflate(layoutInflater)
         setContentView(find.root)
+
+        var id = intent.getStringExtra("idKendaraan")
+
+        if (id == null){
+            modeTambah()
+        }else {
+            modeEdit()
+        }
 
         find.btnHome.setOnClickListener { onBackPressed() }
 
@@ -59,4 +68,14 @@ class InputKendaraanActivity : AppCompatActivity() {
         }
     }
 
+    private fun modeEdit() {
+        find.btnTmbh.visibility = View.GONE
+        find.headingKendaraan.text="Edit Kendaraan"
     }
+
+    private fun modeTambah() {
+        find.btnUpdate.visibility = View.GONE
+        find.headingKendaraan.text="Tambah Kendaraan"
+    }
+
+}

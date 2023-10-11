@@ -34,10 +34,6 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
                 override fun delete (kendaraan: Kendaraan) {
                     deletedata(kendaraan)
                 }
-
-                override fun update(kendaraan: Kendaraan) {
-                    TODO("Not yet implemented")
-                }
             })
 
         find.btnPesanan.setOnClickListener {

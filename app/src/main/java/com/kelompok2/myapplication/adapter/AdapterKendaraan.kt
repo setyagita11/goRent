@@ -1,5 +1,6 @@
 package com.kelompok2.myapplication.GoRent
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.kelompok2.myapplication.InputKendaraanActivity
 import com.kelompok2.myapplication.R
 import java.util.*
 
@@ -18,10 +20,10 @@ class AdapterKendaraan (val list: ArrayList<Kendaraan> ,val listener: kendaraanv
         val harga = itemView.findViewById<TextView>(R.id.txtHarga)
         val tersedia = itemView.findViewById<TextView>(R.id.txtTersedia)
         val hapus= itemView.findViewById<ImageView>(R.id.imgDelete)
+        val edit= itemView.findViewById<ImageView>(R.id.imgEdit)
     }
     interface  kendaraanv1{
         fun delete(kendaraan: Kendaraan)
-        fun update(kendaraan: Kendaraan)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -37,6 +39,10 @@ class AdapterKendaraan (val list: ArrayList<Kendaraan> ,val listener: kendaraanv
         holder.tersedia.text = list[position].persediaan.toString()
         holder.hapus.setOnClickListener{
             listener.delete(list[position])
+        }
+        holder.edit.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, InputKendaraanActivity::class.java).putExtra("idKendaraan", list[position].id.toString())
         }
 
     }
