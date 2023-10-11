@@ -21,6 +21,7 @@ class AdapterKendaraan (val list: ArrayList<Kendaraan> ,val listener: kendaraanv
         val tersedia = itemView.findViewById<TextView>(R.id.txtTersedia)
         val hapus= itemView.findViewById<ImageView>(R.id.imgDelete)
         val edit= itemView.findViewById<ImageView>(R.id.imgEdit)
+
     }
     interface  kendaraanv1{
         fun delete(kendaraan: Kendaraan)
@@ -43,6 +44,7 @@ class AdapterKendaraan (val list: ArrayList<Kendaraan> ,val listener: kendaraanv
         holder.edit.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, InputKendaraanActivity::class.java).putExtra("idKendaraan", list[position].id.toString())
+            context.startActivity(intent)
         }
 
     }
