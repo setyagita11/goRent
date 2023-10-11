@@ -17,7 +17,7 @@ interface DAO {
     fun UpdateKendaraan(kendaraan: Kendaraan)
     @Delete
     fun DeleteKendaraan(kendaraan: Kendaraan)
-    @Query("SELECT*FROM kendaraan WHERE id=id")
+    @Query("SELECT*FROM kendaraan WHERE id=:id")
     fun getIDkendaraan (id:Int) : List<Kendaraan>
 
 
