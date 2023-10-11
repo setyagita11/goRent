@@ -1,0 +1,8 @@
+val data = db.barangDao().getNamaBrg()
+
+val spinner = binding.spinner
+val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, data)
+adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+spinner.adapter = adapter
+
+val selectedItem = spinner.selectedItem.toString()
