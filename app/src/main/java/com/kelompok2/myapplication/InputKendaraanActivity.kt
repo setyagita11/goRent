@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.kelompok2.myapplication.GoRent.AdapterKendaraan
 import com.kelompok2.myapplication.GoRent.DBgoRent
@@ -37,10 +38,20 @@ class InputKendaraanActivity : AppCompatActivity() {
             )
         }
 
+        val data = arrayOf("Pilih Jenis", "Mobil", "Motor")
+
+        val spinner = find.plhJns
+        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, data)
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = spinnerAdapter
+
+        val selectedItem = spinner.selectedItem.toString()
+
         database = DBgoRent.getInstance(applicationContext)
         find.btnTmbh.setOnClickListener {
 
             if (find.inputMerek.text.isNotEmpty() &&
+                selectedItem !== "Pilih Jenis" &&
                 find.inputHarga.text.isNotEmpty() &&
                 find.inputTersedia.text.isNotEmpty()
             ){
@@ -48,24 +59,21 @@ class InputKendaraanActivity : AppCompatActivity() {
                 database.dao().InsertKendaraan(
                     Kendaraan(0,
                         find.inputMerek.text.toString(),
-                        find.inputHarga.text.toString(),
-                        find.inputTersedia.text.toString().toInt(),
-                        find.spinner.scrollX.toString().toInt()
+                        selectedItem,
+                        find.inputHarga.text.toString().toInt(),
+                        find.inputTersedia.text.toString().toInt()
                     )
                 )
-                find.inputMerek.setText("")
-                find.inputHarga.setText("")
-                find.inputTersedia.setText("")
+                onBackPressed()
 
-                startActivity(Intent(
-                    this,RecyclerViewKendaraanActivity::class.java)
-                )
-
+                alert("Data berhasil ditambahkan")
             }else{
-                Toast.makeText(applicationContext,"Silahkan isi dahulu",
-                    Toast.LENGTH_SHORT).show()
+                alert("Isi data terlebih dahulu")
             }
         }
+    }
+    private fun alert(msg: String) {
+
     }
 
     private fun modeEdit() {
