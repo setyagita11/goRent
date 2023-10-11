@@ -3,7 +3,9 @@ package com.kelompok2.myapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.kelompok2.myapplication.GoRent.AdapterKendaraan
@@ -16,6 +18,7 @@ class InputKendaraanActivity : AppCompatActivity() {
     private lateinit var find : ActivityInputKendaraanBinding
     private lateinit var adapter: AdapterKendaraan
     private lateinit var database: DBgoRent
+    private lateinit var selectedItem : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +48,18 @@ class InputKendaraanActivity : AppCompatActivity() {
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = spinnerAdapter
 
-        val selectedItem = spinner.selectedItem.toString()
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                selectedItem = parent?.getItemAtPosition(position).toString()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+
+//        val selectedItem = spinner.selectedItem.toString()
 
         database = DBgoRent.getInstance(applicationContext)
         find.btnTmbh.setOnClickListener {
@@ -65,7 +79,6 @@ class InputKendaraanActivity : AppCompatActivity() {
                     )
                 )
                 onBackPressed()
-
                 alert("Data berhasil ditambahkan")
             }else{
                 alert("Isi data terlebih dahulu")
@@ -73,7 +86,7 @@ class InputKendaraanActivity : AppCompatActivity() {
         }
     }
     private fun alert(msg: String) {
-
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
     private fun modeEdit() {
