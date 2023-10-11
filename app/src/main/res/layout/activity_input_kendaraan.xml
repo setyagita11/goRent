@@ -73,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
         <EditText
-            android:id="@+id/inputUsername"
+            android:id="@+id/inputMerek"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:background="@drawable/bg_input"
@@ -87,7 +87,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextText3"
+            android:id="@+id/inputHarga"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="10dp"
@@ -117,7 +117,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
 
             <EditText
-                android:id="@+id/editTextText5"
+                android:id="@+id/inputTersedia"
                 android:layout_width="165dp"
                 android:layout_height="55dp"
                 android:layout_marginStart="9dp"
@@ -133,7 +133,7 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button2"
+            android:id="@+id/btnTmbh"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="18dp"
@@ -146,7 +146,7 @@
             app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
+            android:id="@+id/btnUpdate"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="22dp"
