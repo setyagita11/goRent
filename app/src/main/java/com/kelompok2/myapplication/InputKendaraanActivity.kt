@@ -22,6 +22,7 @@ class InputKendaraanActivity : AppCompatActivity() {
     private lateinit var adapter: AdapterKendaraan
     private val database by lazy { DBgoRent.getInstance(this) }
     private lateinit var selectedItem : String
+    private var jenis : String = "0"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +62,8 @@ class InputKendaraanActivity : AppCompatActivity() {
             }
 
         }
+
+        spinner.setSelection(jenis.toInt())
 
 //        val selectedItem = spinner.selectedItem.toString()
 
@@ -113,13 +116,11 @@ class InputKendaraanActivity : AppCompatActivity() {
         find.btnTmbh.visibility = View.GONE
         find.headingKendaraan.text="Edit Kendaraan"
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val data = database.dao().getIDkendaraan(id)[0]
-            find.inputMerek.setText(data.merk)
-            find.inputHarga.setText(data.harga_sewa.toString())
-            find.inputTersedia.setText(data.persediaan.toString())
-
-        }
+        val data = database.dao().getIDkendaraan(id)[0]
+        find.inputMerek.setText(data.merk)
+        find.inputHarga.setText(data.harga_sewa.toString())
+        find.inputTersedia.setText(data.persediaan.toString())
+        jenis = if (data.jenis == "Mobil") "1" else "2"
 
     }
 
