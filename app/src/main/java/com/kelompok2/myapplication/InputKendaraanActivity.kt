@@ -90,6 +90,7 @@ class InputKendaraanActivity : AppCompatActivity() {
 
         find.btnUpdate.setOnClickListener {
             if (find.inputMerek.text.isNotEmpty()&&
+                selectedItem !== "Pilih Jenis" &&
                 find.inputHarga.text.isNotEmpty()&&
                 find.inputTersedia.text.isNotEmpty()){
 
