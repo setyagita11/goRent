@@ -24,6 +24,7 @@ class AdapterKendaraan (val list: ArrayList<Kendaraan> ,val listener: kendaraanv
         val hapus= itemView.findViewById<ImageView>(R.id.imgDelete)
         val edit= itemView.findViewById<ImageView>(R.id.imgEdit)
         val detail= itemView.findViewById<CardView>(R.id.btnDetailKendaraan)
+        val kendaraan = itemView.findViewById<ImageView>(R.id.imgKendaraan)
 
     }
     interface  kendaraanv1{
@@ -55,6 +56,7 @@ class AdapterKendaraan (val list: ArrayList<Kendaraan> ,val listener: kendaraanv
             context.startActivity(intent)
 
         }
+        if (list[position].jenis == "Motor") holder.kendaraan.setImageResource(R.drawable.motor)
 
     }
 
