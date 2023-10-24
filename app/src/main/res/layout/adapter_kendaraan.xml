@@ -46,15 +46,31 @@
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/txtHarga"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:paddingLeft="10dp"
-                android:text="Harga"
-                android:textColor="@color/bg_elemen"
-                android:textSize="17sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp."
+                    android:layout_marginTop="3dp"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/bg_elemen"
+                    android:textSize="17sp"/>
+
+                <TextView
+                    android:id="@+id/txtHarga"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:paddingLeft="3dp"
+                    android:text="Harga"
+                    android:textColor="@color/bg_elemen"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/txtTersedia"
