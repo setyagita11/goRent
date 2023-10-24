@@ -63,7 +63,7 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
         dialog.apply {
 
             setTitle("Konfirmasi hapus data")
-            setMessage("Apakah anda yakin menghapus data${kendaraan.merk}?")
+            setMessage("Apakah anda yakin menghapus data ${kendaraan.merk}?")
 
             setNegativeButton("Batal"){
                         dialogInterface:DialogInterface, i:Int -> dialogInterface.dismiss()
@@ -79,7 +79,6 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
                 dialog.show()
         }
     }
-
 
     override fun onResume() {
         super.onResume()
