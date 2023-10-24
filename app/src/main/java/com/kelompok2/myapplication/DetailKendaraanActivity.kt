@@ -28,5 +28,6 @@ class DetailKendaraanActivity : AppCompatActivity() {
         find.dataKharga.setText(data.harga_sewa.toString())
         find.dataKtersedia.setText(data.persediaan.toString())
         find.dataKjenis.setText(data.jenis)
+        if (data.jenis == "Motor") find.imgKendaraan.setImageResource(R.drawable.motor)
     }
 }
