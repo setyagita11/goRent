@@ -12,12 +12,15 @@ import com.kelompok2.myapplication.GoRent.AdapterKendaraan
 import com.kelompok2.myapplication.GoRent.DBgoRent
 import com.kelompok2.myapplication.GoRent.Kendaraan
 import com.kelompok2.myapplication.databinding.ActivityInputKendaraanBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class InputKendaraanActivity : AppCompatActivity() {
 
     private lateinit var find : ActivityInputKendaraanBinding
     private lateinit var adapter: AdapterKendaraan
-    private lateinit var database: DBgoRent
+    private val database by lazy { DBgoRent.getInstance(this) }
     private lateinit var selectedItem : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +33,7 @@ class InputKendaraanActivity : AppCompatActivity() {
         if (id == null){
             modeTambah()
         }else {
-            modeEdit()
+            modeEdit(id.toString().toInt())
         }
 
         find.btnHome.setOnClickListener { onBackPressed() }
@@ -61,7 +64,7 @@ class InputKendaraanActivity : AppCompatActivity() {
 
 //        val selectedItem = spinner.selectedItem.toString()
 
-        database = DBgoRent.getInstance(applicationContext)
+//        database = DBgoRent.getInstance(applicationContext)
         find.btnTmbh.setOnClickListener {
 
             if (find.inputMerek.text.isNotEmpty() &&
@@ -84,14 +87,40 @@ class InputKendaraanActivity : AppCompatActivity() {
                 alert("Isi data terlebih dahulu")
             }
         }
+
+        find.btnUpdate.setOnClickListener {
+            if (find.inputMerek.text.isNotEmpty()&&
+                find.inputHarga.text.isNotEmpty()&&
+                find.inputTersedia.text.isNotEmpty()){
+
+                database.dao().UpdateKendaraan(Kendaraan(
+                    id.toString().toInt(),
+                    find.inputMerek.text.toString(),
+                    selectedItem,
+                    find.inputHarga.text.toString().toInt(),
+                    find.inputTersedia.text.toString().toInt())
+                )
+            }
+
+        }
+
     }
     private fun alert(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
-    private fun modeEdit() {
+    private fun modeEdit(id:Int) {
         find.btnTmbh.visibility = View.GONE
         find.headingKendaraan.text="Edit Kendaraan"
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val data = database.dao().getIDkendaraan(id)[0]
+            find.inputMerek.setText(data.merk)
+            find.inputHarga.setText(data.harga_sewa.toString())
+            find.inputTersedia.setText(data.persediaan.toString())
+
+        }
+
     }
 
     private fun modeTambah() {
