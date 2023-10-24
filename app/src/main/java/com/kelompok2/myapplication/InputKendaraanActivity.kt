@@ -30,7 +30,7 @@ class InputKendaraanActivity : AppCompatActivity() {
         if (id == null){
             modeTambah()
         }else {
-            modeEdit()
+            modeEdit(id.toString().toInt())
         }
 
         find.btnHome.setOnClickListener { onBackPressed() }
@@ -89,9 +89,14 @@ class InputKendaraanActivity : AppCompatActivity() {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
-    private fun modeEdit() {
+    private fun modeEdit(id:Int) {
         find.btnTmbh.visibility = View.GONE
         find.headingKendaraan.text="Edit Kendaraan"
+
+        val data = database.dao().getIDkendaraan(id)[0]
+        find.inputMerek.setText(data.merk)
+        find.inputHarga.setText(data.harga_sewa.toString())
+        find.inputTersedia.setText(data.persediaan.toString())
     }
 
     private fun modeTambah() {
