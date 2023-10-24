@@ -100,6 +100,10 @@ class InputKendaraanActivity : AppCompatActivity() {
                     find.inputHarga.text.toString().toInt(),
                     find.inputTersedia.text.toString().toInt())
                 )
+                onBackPressed()
+                alert("Data berhasil diubah")
+            }else{
+                alert("Ubah data terlebih dahulu")
             }
 
         }
