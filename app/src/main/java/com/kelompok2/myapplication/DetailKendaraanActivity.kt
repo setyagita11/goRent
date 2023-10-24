@@ -1,5 +1,6 @@
 package com.kelompok2.myapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,10 @@ class DetailKendaraanActivity : AppCompatActivity() {
         find= ActivityDetailKendaraanBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(find.root)
+
+        find.btnBack.setOnClickListener {
+            startActivity(Intent(this, RecyclerViewKendaraanActivity::class.java))
+        }
 
         var id = intent.getStringExtra("idKendaraan").toString().toInt()
 
