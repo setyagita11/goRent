@@ -93,6 +93,7 @@ class InputKendaraanActivity : AppCompatActivity() {
 
         find.btnUpdate.setOnClickListener {
             if (find.inputMerek.text.isNotEmpty()&&
+                selectedItem !== "Pilih Jenis" &&
                 find.inputHarga.text.isNotEmpty()&&
                 find.inputTersedia.text.isNotEmpty()){
 
@@ -103,6 +104,10 @@ class InputKendaraanActivity : AppCompatActivity() {
                     find.inputHarga.text.toString().toInt(),
                     find.inputTersedia.text.toString().toInt())
                 )
+                onBackPressed()
+                alert("Data berhasil diubah")
+            }else{
+                alert("Ubah data terlebih dahulu")
             }
 
         }
