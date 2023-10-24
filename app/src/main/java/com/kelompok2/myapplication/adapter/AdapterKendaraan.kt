@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.kelompok2.myapplication.DetailKendaraanActivity
 import com.kelompok2.myapplication.InputKendaraanActivity
 import com.kelompok2.myapplication.R
 import java.util.*
@@ -21,6 +23,7 @@ class AdapterKendaraan (val list: ArrayList<Kendaraan> ,val listener: kendaraanv
         val tersedia = itemView.findViewById<TextView>(R.id.txtTersedia)
         val hapus= itemView.findViewById<ImageView>(R.id.imgDelete)
         val edit= itemView.findViewById<ImageView>(R.id.imgEdit)
+        val detail= itemView.findViewById<CardView>(R.id.btnDetailKendaraan)
 
     }
     interface  kendaraanv1{
@@ -45,6 +48,12 @@ class AdapterKendaraan (val list: ArrayList<Kendaraan> ,val listener: kendaraanv
             val context = holder.itemView.context
             val intent = Intent(context, InputKendaraanActivity::class.java).putExtra("idKendaraan", list[position].id.toString())
             context.startActivity(intent)
+        }
+        holder.detail.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, DetailKendaraanActivity::class.java).putExtra("idKendaraan", list[position].id.toString())
+            context.startActivity(intent)
+
         }
 
     }
