@@ -17,16 +17,24 @@ class LoginActivity : AppCompatActivity() {
 
         val username  = find.inputUsername
         val password = find.inputPassword
+        val mimnimalpw = find.inputPassword.text.split("\\s+".toRegex())
+
 
         find.btnLogin.setOnClickListener {
 
             if (username.text.isNotEmpty() && password.text.isNotEmpty()) {
-                startActivity(
-                    Intent(this, DashboardActivity::class.java)
-                        .putExtra("username", username.text.toString())
-                )
-                alert("Selamat datang di Go-Rent ${username.text}")
-                finish()
+                if (password.text.length >= 8){
+                    startActivity(
+                        Intent(this, DashboardActivity::class.java)
+                            .putExtra("username", username.text.toString())
+                    )
+                    alert("Selamat datang di Go-Rent ${username.text}")
+                    finish()
+
+                }else {
+                    alert("Pasword minimal 8 huruf")
+                }
+
             } else {
                 alert("Username dan Password tidak boleh kosong!")
             }

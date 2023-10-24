@@ -10,7 +10,7 @@ import com.kelompok2.myapplication.GoRent.Kendaraan
 import com.kelompok2.myapplication.adapter.AdapterPesanan
 import com.kelompok2.myapplication.databinding.ActivityInputPesananBinding
 
-class InputPesananActivity : AppCompatActivity() {
+class   InputPesananActivity : AppCompatActivity() {
 
     private lateinit var adapter: AdapterPesanan
     private lateinit var database: DBgoRent
