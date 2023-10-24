@@ -89,7 +89,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
         <EditText
-            android:id="@+id/editTextText3"
+            android:id="@+id/inputKndraan"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="10dp"
@@ -106,7 +106,7 @@
             app:layout_constraintTop_toBottomOf="@+id/inputUsername" />
 
         <EditText
-            android:id="@+id/editTextText5"
+            android:id="@+id/inputAlamat"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="10dp"
@@ -157,7 +157,7 @@
             android:orientation="horizontal">
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/plihKndraan"
                 android:layout_width="165dp"
                 android:layout_height="55dp"
                 android:layout_weight="1"
@@ -168,7 +168,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
 
             <Spinner
-                android:id="@+id/spinner2"
+                android:id="@+id/status"
                 android:layout_width="165dp"
                 android:layout_height="55dp"
                 android:layout_marginStart="7dp"
@@ -182,7 +182,7 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button2"
+            android:id="@+id/btnTmbhPsnan"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="18dp"
@@ -195,7 +195,7 @@
             app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
+            android:id="@+id/btnUpdatePsnan"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="22dp"

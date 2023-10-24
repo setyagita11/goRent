@@ -141,6 +141,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btnPesanan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="-2.5dp"
@@ -167,7 +168,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
+        android:id="@+id/listPesanan"
         android:layout_width="409dp"
         android:layout_height="483dp"
         android:layout_marginStart="1dp"
