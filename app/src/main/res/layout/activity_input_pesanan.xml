@@ -43,11 +43,11 @@
                 app:srcCompat="@drawable/profile" />
 
             <TextView
-                android:id="@+id/textview"
+                android:id="@+id/headingPesanan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/baloo"
-                android:text="PESANAN"
+                android:text="Title"
                 android:textColor="@color/white"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -163,9 +163,7 @@
                 android:layout_weight="1"
                 android:textColor="#66000000"
                 android:textColorHint="#66000000"
-                android:background="@drawable/bg_input"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
+                android:background="@drawable/bg_input" />
 
             <Spinner
                 android:id="@+id/status"
