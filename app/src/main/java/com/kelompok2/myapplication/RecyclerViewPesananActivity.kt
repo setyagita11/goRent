@@ -1,11 +1,15 @@
 package com.kelompok2.myapplication
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kelompok2.myapplication.GoRent.DBgoRent
+import com.kelompok2.myapplication.GoRent.Pesanan
 import com.kelompok2.myapplication.adapter.AdapterPesanan
 import com.kelompok2.myapplication.databinding.ActivityRecyclerviewPesananBinding
 import kotlinx.coroutines.CoroutineScope
@@ -33,7 +37,12 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
 
         find.btnHome.setOnClickListener { onBackPressed() }
 
-        adapterP = AdapterPesanan(arrayListOf())
+        adapterP = AdapterPesanan(arrayListOf(),
+            object:AdapterPesanan.pesanan{
+                override fun hapus(pesanan: Pesanan) {
+                    hapusData(pesanan)
+                }
+            })
 
         find.listPesanan.adapter = adapterP
         find.listPesanan.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
@@ -42,6 +51,28 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
         find.btnTambahPesanan.setOnClickListener {
             startActivity(
                 Intent(this, InputPesananActivity::class.java ))
+        }
+    }
+    private fun hapusData (pesanan: Pesanan){
+        val dialog = AlertDialog.Builder(this)
+        dialog.apply {
+            setTitle("konfirmasi hapus data")
+            setMessage("Apakah anda yakin akan menghapus data ${pesanan.nama_pemesan}?")
+            setNegativeButton("Batal"){
+                dialogInterface: DialogInterface,i:Int->
+                dialogInterface.dismiss()
+            }
+            setPositiveButton("hapus"){
+                dialogInterface:DialogInterface,i:Int->
+                dialogInterface.dismiss()
+                CoroutineScope(Dispatchers.IO).launch {
+                    db.dao().DeletePesanan(pesanan)
+
+                }
+                recreate()
+                alert("data ${pesanan.nama_pemesan} berhasil dihapus")
+            }
+            dialog.show()
         }
     }
 
@@ -60,6 +91,9 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
             }
         }
         find.listPesanan.adapter = adapterP
+    }
+    private fun alert (msg:String){
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show()
     }
 
 }

@@ -132,7 +132,6 @@ class InputKendaraanActivity : AppCompatActivity() {
     private fun modeTambah() {
         find.btnUpdate.visibility = View.GONE
         find.headingKendaraan.text="Tambah Kendaraan"
-
     }
 
 }
