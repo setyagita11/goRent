@@ -30,4 +30,6 @@ interface DAO {
     fun DeletePesanan(pesanan: Pesanan)
     @Query("SELECT*FROM pesanan ")
     fun getAllPesanan():List<Pesanan>
+    @Query("SELECT*FROM pesanan WHERE id=:id")
+    fun getIDPesanan (id:Int) : List<Pesanan>
 }
