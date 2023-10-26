@@ -15,7 +15,7 @@ import com.kelompok2.myapplication.databinding.ActivityInputPesananBinding
 class InputPesananActivity : AppCompatActivity() {
 
     private lateinit var adapter: AdapterPesanan
-    private lateinit var database: DBgoRent
+    private val database by lazy { DBgoRent.getInstance(this) }
     private lateinit var selectedItem : String
     private var jenis : String = "0"
 
@@ -48,7 +48,7 @@ class InputPesananActivity : AppCompatActivity() {
         spinner.setSelection(jenis.toInt())
 
 
-        database = DBgoRent.getInstance(applicationContext)
+//        database = DBgoRent.getInstance(applicationContext)
         find.btnTmbhPsnan.setOnClickListener {
 
             if (
