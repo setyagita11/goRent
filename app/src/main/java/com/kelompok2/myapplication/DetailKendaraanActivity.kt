@@ -17,9 +17,7 @@ class DetailKendaraanActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(find.root)
 
-        find.btnBack.setOnClickListener {
-            startActivity(Intent(this, RecyclerViewKendaraanActivity::class.java))
-        }
+        find.btnBack.setOnClickListener {onBackPressed()}
 
         var id = intent.getStringExtra("idKendaraan").toString().toInt()
 

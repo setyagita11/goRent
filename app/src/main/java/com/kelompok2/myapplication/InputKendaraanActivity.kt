@@ -37,11 +37,7 @@ class InputKendaraanActivity : AppCompatActivity() {
             modeEdit(id.toString().toInt())
         }
 
-        find.btnKembaliKendaraan.setOnClickListener{
-            startActivity(
-                Intent(this, RecyclerViewKendaraanActivity::class.java)
-            )
-        }
+        find.btnKembaliKendaraan.setOnClickListener{onBackPressed()}
 
         val data = arrayOf("Pilih Jenis", "Mobil", "Motor")
 

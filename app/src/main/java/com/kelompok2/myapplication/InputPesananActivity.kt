@@ -34,9 +34,7 @@ class InputPesananActivity : AppCompatActivity() {
             modeEdit(id.toString().toInt())
         }
 
-        find.btnKembali.setOnClickListener {
-            startActivity(Intent(this, RecyclerViewPesananActivity::class.java))
-        }
+        find.btnKembali.setOnClickListener {onBackPressed()}
 
         val dataStatus = arrayOf("Status", "Sewa", "Selesai")
 
