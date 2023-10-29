@@ -37,11 +37,9 @@ class InputKendaraanActivity : AppCompatActivity() {
             modeEdit(id.toString().toInt())
         }
 
-        find.btnHome.setOnClickListener { onBackPressed() }
-
-        find.btnPesanan.setOnClickListener{
+        find.btnKembaliKendaraan.setOnClickListener{
             startActivity(
-                Intent(this, RecyclerViewPesananActivity::class.java)
+                Intent(this, RecyclerViewKendaraanActivity::class.java)
             )
         }
 

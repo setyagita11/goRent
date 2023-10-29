@@ -28,8 +28,9 @@
             android:src="@drawable/profile" />
 
         <LinearLayout
-            android:layout_width="210dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
@@ -44,16 +45,6 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/txtKendaraan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:paddingLeft="10dp"
-                android:text="Kendaraan"
-                android:textColor="@color/bg_elemen"
-                android:textSize="17sp" />
-
-            <TextView
                 android:id="@+id/txtAlamat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,19 +55,29 @@
                 android:textSize="17sp" />
 
             <TextView
-                android:id="@+id/txtDurasi"
+                android:id="@+id/txtWaktuSewa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:paddingLeft="10dp"
-                android:text="Durasi"
+                android:text="Waktu Sewa"
+                android:textColor="@color/bg_elemen"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/txtStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:paddingLeft="10dp"
+                android:text="Status"
                 android:textColor="@color/bg_elemen"
                 android:textSize="17sp" />
 
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
             <ImageView
