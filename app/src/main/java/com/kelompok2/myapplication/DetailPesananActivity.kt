@@ -20,9 +20,7 @@ class DetailPesananActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(find.root)
 
-        find.btnBackPsnan.setOnClickListener {
-            startActivity(Intent(this, RecyclerViewPesananActivity::class.java))
-        }
+        find.btnBackPsnan.setOnClickListener {onBackPressed()}
 
         var id = intent.getStringExtra("idPesanan").toString().toInt()
 
