@@ -31,5 +31,8 @@ class DetailPesananActivity : AppCompatActivity() {
         find.dataPdurasi.setText(data.waktu_sewa.toString())
         find.dataPstatus.setText(data.status)
 
+
+
+
     }
 }

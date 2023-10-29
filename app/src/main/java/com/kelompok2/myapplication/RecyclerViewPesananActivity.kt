@@ -52,6 +52,32 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
             startActivity(
                 Intent(this, InputPesananActivity::class.java ))
         }
+
+        find.logout.setOnClickListener() {
+
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Konfirmasi Logout")
+            builder.setMessage("Apakah Anda yakin ingin logout?")
+
+            builder.setPositiveButton("ya") { dialog, which ->
+
+
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            builder.setNegativeButton("Tidak") { dialog, which ->
+                // Batal logout, tutup dialog
+                dialog.dismiss()
+            }
+
+            val dialog = builder.create()
+            dialog.show()
+        }
+
+
+
+
     }
     private fun hapusData (pesanan: Pesanan){
         val dialog = AlertDialog.Builder(this)
@@ -94,6 +120,7 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
     }
     private fun alert (msg:String){
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show()
+
     }
 
 }

@@ -54,6 +54,30 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
             Intent(this, InputKendaraanActivity::class.java ))
         }
 
+
+        find.logout1.setOnClickListener() {
+
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Konfirmasi Logout")
+            builder.setMessage("Apakah Anda yakin ingin logout?")
+
+            builder.setPositiveButton("ya") { dialog, which ->
+
+
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            builder.setNegativeButton("Tidak") { dialog, which ->
+                // Batal logout, tutup dialog
+                dialog.dismiss()
+            }
+
+            val dialog = builder.create()
+            dialog.show()
+
+
+        }
     }
 
     private fun deletedata(kendaraan: Kendaraan) {
@@ -100,6 +124,7 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
     private fun alert(msg: String) {
 
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+
 
     }
 
