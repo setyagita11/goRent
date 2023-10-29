@@ -59,9 +59,6 @@ class InputKendaraanActivity : AppCompatActivity() {
 
         spinner.setSelection(jenis.toInt())
 
-//        val selectedItem = spinner.selectedItem.toString()
-
-//        database = DBgoRent.getInstance(applicationContext)
         find.btnTmbh.setOnClickListener {
 
             if (find.inputMerek.text.isNotEmpty() &&
@@ -70,16 +67,22 @@ class InputKendaraanActivity : AppCompatActivity() {
                 find.inputTersedia.text.isNotEmpty()
             ){
 
-                database.dao().InsertKendaraan(
-                    Kendaraan(0,
-                        find.inputMerek.text.toString(),
-                        selectedItem,
-                        find.inputHarga.text.toString().toInt(),
-                        find.inputTersedia.text.toString().toInt()
+                try {
+                    database.dao().InsertKendaraan(
+                        Kendaraan(0,
+                            find.inputMerek.text.toString(),
+                            selectedItem,
+                            find.inputHarga.text.toString().toInt(),
+                            find.inputTersedia.text.toString().toInt()
+                        )
                     )
-                )
-                onBackPressed()
-                alert("Data berhasil ditambahkan")
+                    onBackPressed()
+                    alert("Data berhasil ditambahkan")
+
+                } catch (e : Exception){
+                    alert("Merk tersebut sudah tersedia")
+                }
+
             }else{
                 alert("Isi data terlebih dahulu")
             }
@@ -91,15 +94,21 @@ class InputKendaraanActivity : AppCompatActivity() {
                 find.inputHarga.text.isNotEmpty()&&
                 find.inputTersedia.text.isNotEmpty()){
 
-                database.dao().UpdateKendaraan(Kendaraan(
-                    id.toString().toInt(),
-                    find.inputMerek.text.toString(),
-                    selectedItem,
-                    find.inputHarga.text.toString().toInt(),
-                    find.inputTersedia.text.toString().toInt())
-                )
-                onBackPressed()
-                alert("Data berhasil diubah")
+                try {
+                    database.dao().UpdateKendaraan(Kendaraan(
+                        id.toString().toInt(),
+                        find.inputMerek.text.toString(),
+                        selectedItem,
+                        find.inputHarga.text.toString().toInt(),
+                        find.inputTersedia.text.toString().toInt())
+                    )
+                    onBackPressed()
+                    alert("Data berhasil diubah")
+
+                } catch (e : Exception) {
+                    alert("Merk tersebut sudah tersedia")
+                }
+
             }else{
                 alert("Ubah data terlebih dahulu")
             }

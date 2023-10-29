@@ -17,8 +17,6 @@ class LoginActivity : AppCompatActivity() {
 
         val username  = find.inputUsername
         val password = find.inputPassword
-        val mimnimalpw = find.inputPassword.text.split("\\s+".toRegex())
-
 
         find.btnLogin.setOnClickListener {
 
