@@ -32,7 +32,7 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
         adapter = AdapterKendaraan(arrayListOf(),
             object : AdapterKendaraan.kendaraanv1{
                 override fun delete (kendaraan: Kendaraan) {
-                    deletedata(kendaraan)
+                    deletedata(kendaraan) //deletedata:function
                 }
             })
 

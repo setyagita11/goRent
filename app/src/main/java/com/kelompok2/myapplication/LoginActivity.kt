@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
                 if (password.text.length >= 8){
                     startActivity(
                         Intent(this, DashboardActivity::class.java)
-                            .putExtra("username", username.text.toString())
+                            .putExtra("username", username.text.toString())//put extra:untuk mengirim data(username)
                     )
                     alert("Selamat datang di Go-Rent ${username.text}")
                     finish()
@@ -44,6 +44,5 @@ class LoginActivity : AppCompatActivity() {
     private fun alert(msg: String) {
 
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-
     }
 }
