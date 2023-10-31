@@ -48,15 +48,14 @@
                     android:id="@+id/tvWellcome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="23dp"
-                    android:layout_marginEnd="80dp"
-                    android:fontFamily="@font/baloo"
-                    android:text="KENDARAAN"
+                    android:layout_marginTop="26dp"
+                    android:fontFamily="@font/alatsi"
+                    android:text="Kendaraan"
                     android:textColor="@color/white"
-                    android:textSize="25sp"
+                    android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imageView7"
-                    app:layout_constraintStart_toEndOf="@+id/logout"
+                    app:layout_constraintStart_toEndOf="@+id/logout1"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0" />
 
@@ -64,10 +63,13 @@
 
             <EditText
                 android:id="@+id/editTextText6"
-                android:layout_width="340dp"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_gravity="center"
+                android:layout_marginRight="18dp"
+                android:layout_marginLeft="18dp"
                 android:layout_marginTop="30dp"
+                android:fontFamily="sans-serif-condensed-light"
                 android:background="@drawable/bg_input"
                 android:drawableLeft="@drawable/ic_search"
                 android:drawablePadding="10dp"
@@ -114,6 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:gravity="center"
+                android:fontFamily="sans-serif-condensed-light"
                 android:text="Home"
                 android:textColor="@color/black" />
 
@@ -137,6 +140,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:gravity="center"
+                android:fontFamily="sans-serif-condensed-light"
                 android:text="Kendaraan"
                 android:textColor="@color/bg_elemen" />
 
@@ -163,6 +167,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Pesanan"
+                android:fontFamily="sans-serif-condensed-light"
                 android:textColor="@color/black" />
 
         </LinearLayout>

@@ -41,6 +41,7 @@
                 android:paddingLeft="10dp"
                 android:text="Nama"
                 android:textColor="@color/bg_elemen"
+                android:fontFamily="sans-serif-condensed-light"
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
@@ -48,8 +49,9 @@
                 android:id="@+id/txtAlamat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="1dp"
                 android:paddingLeft="10dp"
+                android:fontFamily="sans-serif-condensed-light"
                 android:text="Alamat"
                 android:textColor="@color/bg_elemen"
                 android:textSize="17sp" />
@@ -58,8 +60,9 @@
                 android:id="@+id/txtWaktuSewa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="1dp"
                 android:paddingLeft="10dp"
+                android:fontFamily="sans-serif-condensed-light"
                 android:text="Waktu Sewa"
                 android:textColor="@color/bg_elemen"
                 android:textSize="17sp" />
@@ -68,9 +71,10 @@
                 android:id="@+id/txtStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="1dp"
                 android:paddingLeft="10dp"
                 android:text="Status"
+                android:fontFamily="sans-serif-condensed-light"
                 android:textColor="@color/bg_elemen"
                 android:textSize="17sp" />
 
@@ -82,9 +86,9 @@
 
             <ImageView
                 android:id="@+id/imgHapusPsnan"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
+                android:layout_width="27dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="19dp"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/delete"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -93,9 +97,9 @@
 
             <ImageView
                 android:id="@+id/imgEditPsnan"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
+                android:layout_width="27dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/pen"
                 app:layout_constraintEnd_toEndOf="parent"
