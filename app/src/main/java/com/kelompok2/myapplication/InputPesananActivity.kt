@@ -18,7 +18,8 @@ class InputPesananActivity : AppCompatActivity() {
 
     private lateinit var adapter: AdapterPesanan
     private val database by lazy { DBgoRent.getInstance(this) }
-    private lateinit var selectedItem : String
+    private lateinit var selectedItemStatus : String
+    private lateinit var selectedItemKendaraan : String
     private var opsiStatus : String = "0"
     private lateinit var find : ActivityInputPesananBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,14 +39,14 @@ class InputPesananActivity : AppCompatActivity() {
 
         val dataStatus = arrayOf("Status", "Sewa", "Selesai")
 
-        val spinnerStatus = find.status
-        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, dataStatus)
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerStatus.adapter = spinnerAdapter
+        val spnStatus = find.status
+        val spnStatusAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, dataStatus)
+        spnStatusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spnStatus.adapter = spnStatusAdapter
 
-        spinnerStatus.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        spnStatus.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                selectedItem = parent?.getItemAtPosition(position).toString()
+                selectedItemStatus = parent?.getItemAtPosition(position).toString()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -54,16 +55,37 @@ class InputPesananActivity : AppCompatActivity() {
 
         }
 
-        spinnerStatus.setSelection(opsiStatus.toInt())
+        spnStatus.setSelection(opsiStatus.toInt())
+
+//        spinner kendaraan
+        val dataMerk = database.dao().getAllMerk()
+        val newData = arrayOf("Pilih Kendaraan") + dataMerk
+
+        val spnMerk = find.plihKndraan
+        val spnMerkAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, newData)
+        spnMerkAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spnMerk.adapter = spnMerkAdapter
+
+        spnMerk.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                selectedItemKendaraan = parent?.getItemAtPosition(position).toString()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+
+//        spnMerk.setSelection(opsiStatus.toInt())
 
 
-//        database = DBgoRent.getInstance(applicationContext)
         find.btnTmbhPsnan.setOnClickListener {
 
             if (
                 find.inputUsername.text.isNotEmpty() &&
                 find.inputAlamat.text.isNotEmpty() &&
-                selectedItem !== "Status" &&
+                selectedItemStatus !== "Status" &&
                 find.inputWaktuSewa.text.isNotEmpty()
 
             ) {
@@ -73,9 +95,9 @@ class InputPesananActivity : AppCompatActivity() {
                         0,
                         find.inputUsername.text.toString(),
                         find.inputAlamat.text.toString(),
-                        find.plihKndraan.scrollX.toString(),
+                        selectedItemKendaraan,
                         find.inputWaktuSewa.text.toString().toInt(),
-                        selectedItem
+                        selectedItemStatus
                     )
                 )
                 onBackPressed()
@@ -89,7 +111,7 @@ class InputPesananActivity : AppCompatActivity() {
             if (
                 find.inputUsername.text.isNotEmpty() &&
                 find.inputAlamat.text.isNotEmpty() &&
-                selectedItem !== "Status" &&
+                selectedItemStatus !== "Status" &&
                 find.inputWaktuSewa.text.isNotEmpty()
             ) {
 
@@ -97,9 +119,9 @@ class InputPesananActivity : AppCompatActivity() {
                     id.toString().toInt(),
                         find.inputUsername.text.toString(),
                         find.inputAlamat.text.toString(),
-                        find.plihKndraan.scrollX.toString(),
+                        selectedItemKendaraan,
                         find.inputWaktuSewa.text.toString().toInt(),
-                        selectedItem
+                        selectedItemStatus
                     )
                 )
 
