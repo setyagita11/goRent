@@ -8,7 +8,7 @@ import androidx.room.Update
 
 @Dao
 interface DAO {
-   //
+   //kendaraan
     @Query("SELECT*FROM kendaraan ")
     fun getAllKendaraan() : List<Kendaraan>
     @Insert
@@ -19,7 +19,8 @@ interface DAO {
     fun DeleteKendaraan(kendaraan: Kendaraan)
     @Query("SELECT*FROM kendaraan WHERE id=:id")
     fun getIDkendaraan (id:Int) : List<Kendaraan>
-
+    @Query("SELECT merk FROM kendaraan")
+    fun getAllMerk() : Array<String>
 
       //pesanan
     @Insert

@@ -47,7 +47,7 @@ class AdapterKendaraan (val list: ArrayList<Kendaraan> ,val listener: kendaraanv
         }
         holder.edit.setOnClickListener {
             val context = holder.itemView.context
-            val intent = Intent(context, InputKendaraanActivity::class.java).putExtra("idKendaraan", list[position].id.toString())
+            val intent = Intent(context, InputKendaraanActivity::class.java).putExtra("idKendaraan", list[position].id.toString())//mengirim data(idKendaraan)
             context.startActivity(intent)
         }
         holder.detail.setOnClickListener {

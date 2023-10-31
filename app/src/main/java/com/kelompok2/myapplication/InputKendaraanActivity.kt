@@ -19,7 +19,6 @@ import kotlinx.coroutines.launch
 class InputKendaraanActivity : AppCompatActivity() {
 
     private lateinit var find : ActivityInputKendaraanBinding
-    private lateinit var adapter: AdapterKendaraan
     private val database by lazy { DBgoRent.getInstance(this) }
     private lateinit var selectedItem : String
     private var jenis : String = "0"
@@ -29,7 +28,7 @@ class InputKendaraanActivity : AppCompatActivity() {
         find= ActivityInputKendaraanBinding.inflate(layoutInflater)
         setContentView(find.root)
 
-        var id = intent.getStringExtra("idKendaraan")
+        var id = intent.getStringExtra("idKendaraan")//meletakkan data(idKendaraan(id))
 
         if (id == null){
             modeTambah()
@@ -92,7 +91,8 @@ class InputKendaraanActivity : AppCompatActivity() {
             if (find.inputMerek.text.isNotEmpty()&&
                 selectedItem !== "Pilih Jenis" &&
                 find.inputHarga.text.isNotEmpty()&&
-                find.inputTersedia.text.isNotEmpty()){
+                find.inputTersedia.text.isNotEmpty()
+                ){
 
                 try {
                     database.dao().UpdateKendaraan(Kendaraan(
@@ -124,11 +124,11 @@ class InputKendaraanActivity : AppCompatActivity() {
         find.btnTmbh.visibility = View.GONE
         find.headingKendaraan.text="Edit Kendaraan"
 
-        val data = database.dao().getIDkendaraan(id)[0]
-        find.inputMerek.setText(data.merk)
-        find.inputHarga.setText(data.harga_sewa.toString())
-        find.inputTersedia.setText(data.persediaan.toString())
-        jenis = if (data.jenis == "Mobil") "1" else "2"
+        val dataKendaraan = database.dao().getIDkendaraan(id)[0]
+        find.inputMerek.setText(dataKendaraan.merk)
+        find.inputHarga.setText(dataKendaraan.harga_sewa.toString())
+        find.inputTersedia.setText(dataKendaraan.persediaan.toString())
+        jenis = if (dataKendaraan.jenis == "Mobil") "1" else "2"
 
     }
 
