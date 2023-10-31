@@ -75,9 +75,6 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
             dialog.show()
         }
 
-
-
-
     }
     private fun hapusData (pesanan: Pesanan){
         val dialog = AlertDialog.Builder(this)

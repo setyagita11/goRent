@@ -3,12 +3,15 @@ package com.kelompok2.myapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.kelompok2.myapplication.databinding.ActivityDashboardBinding
 
 class DashboardActivity : AppCompatActivity() {
 
     private lateinit var find: ActivityDashboardBinding
+    private var backButtonPressedTime = 0L
+    private val backButtonThreshold = 3000L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,6 +19,7 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(find.root)
 
         val username = intent.getStringExtra("username").toString()
+
 
         find.tvWellcome.text = "Hello, $username"
 
@@ -48,6 +52,13 @@ class DashboardActivity : AppCompatActivity() {
             val dialog = builder.create()
             dialog.show()
         }
-
+    }
+    override fun onBackPressed() {
+        if (backButtonPressedTime + backButtonThreshold > System.currentTimeMillis()) {
+            super.onBackPressed()
+        } else {
+            Toast.makeText(this, "Tekan sekali lagi untuk keluar", Toast.LENGTH_SHORT).show()
+        }
+        backButtonPressedTime = System.currentTimeMillis()
     }
 }

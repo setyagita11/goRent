@@ -16,6 +16,7 @@ import com.kelompok2.myapplication.databinding.ActivityInputPesananBinding
 
 class InputPesananActivity : AppCompatActivity() {
 
+
     private lateinit var adapter: AdapterPesanan
     private val database by lazy { DBgoRent.getInstance(this) }
     private lateinit var selectedItem : String
@@ -129,5 +130,7 @@ class InputPesananActivity : AppCompatActivity() {
     private fun modeTambah() {
         find.btnUpdatePsnan.visibility = View.GONE
         find.headingPesanan.text="Tambah Pesanan"
+
     }
+
 }
