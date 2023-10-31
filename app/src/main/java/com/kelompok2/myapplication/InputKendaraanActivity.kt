@@ -1,12 +1,14 @@
 package com.kelompok2.myapplication
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 import com.kelompok2.myapplication.GoRent.AdapterKendaraan
 import com.kelompok2.myapplication.GoRent.DBgoRent
@@ -44,6 +46,8 @@ class InputKendaraanActivity : AppCompatActivity() {
         val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, data)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = spinnerAdapter
+        val textView = spinner.getChildAt(0) as? TextView
+        textView?.setTextColor(Color.RED)
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

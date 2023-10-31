@@ -15,20 +15,26 @@ class LoginActivity : AppCompatActivity() {
         find = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(find.root)
 
-        val username  = find.inputUsername
-        val password = find.inputPassword
-
+        val inusername  = find.inputUsername
+        val inpassword = find.inputPassword
+        val pasword= "12345678"
+        val user = listOf<String>("guru" ,"murid")
         find.btnLogin.setOnClickListener {
 
-            if (username.text.isNotEmpty() && password.text.isNotEmpty()) {
-                if (password.text.length >= 8){
-                    startActivity(
-                        Intent(this, DashboardActivity::class.java)
-                            .putExtra("username", username.text.toString())//put extra:untuk mengirim data(username)
-                    )
-                    alert("Selamat datang di Go-Rent ${username.text}")
-                    finish()
+            if (inusername.text.isNotEmpty() && inpassword.text.isNotEmpty()) {
+                if (inpassword.text.length >= 8){
 
+
+                    if (inusername.text.toString() in user && inpassword.text.toString()== pasword) {
+                        startActivity(
+                            Intent(this, DashboardActivity::class.java)
+                                .putExtra("username", inusername.text.toString())
+                        )
+                        alert("Selamat datang di Go-Rent ${inusername.text}")
+                        finish()
+                    } else {
+                        alert("pasword atau username salah")
+                    }
                 }else {
                     alert("Pasword minimal 8 huruf")
                 }
@@ -44,5 +50,6 @@ class LoginActivity : AppCompatActivity() {
     private fun alert(msg: String) {
 
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+
     }
 }
