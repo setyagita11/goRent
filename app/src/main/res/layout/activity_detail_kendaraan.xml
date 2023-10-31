@@ -37,9 +37,9 @@
             android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="50dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="20dp"
             android:background="@drawable/bg_adapter"
             android:elevation="10dp"
             android:orientation="horizontal"
@@ -48,8 +48,9 @@
             app:layout_constraintTop_toBottomOf="@+id/textView">
 
             <LinearLayout
-                android:layout_width="80dp"
+                android:layout_width="71dp"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -57,6 +58,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif-condensed-light"
                     android:paddingLeft="10dp"
                     android:text="Merek"
                     android:textColor="@color/bg_elemen"
@@ -66,8 +68,9 @@
                     android:id="@+id/textView9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="1dp"
                     android:paddingLeft="10dp"
+                    android:fontFamily="sans-serif-condensed-light"
                     android:text="Harga"
                     android:textColor="@color/bg_elemen"
                     android:textSize="17sp" />
@@ -76,8 +79,9 @@
                     android:id="@+id/textView10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="1dp"
                     android:paddingLeft="10dp"
+                    android:fontFamily="sans-serif-condensed-light"
                     android:text="Tersedia"
                     android:textColor="@color/bg_elemen"
                     android:textSize="17sp" />
@@ -86,8 +90,9 @@
                     android:id="@+id/textView11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="1dp"
                     android:paddingLeft="10dp"
+                    android:fontFamily="sans-serif-condensed-light"
                     android:text="Jenis"
                     android:textColor="@color/bg_elemen"
                     android:textSize="17sp" />
@@ -105,6 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:paddingLeft="10dp"
+                    android:fontFamily="sans-serif-condensed-light"
                     android:text=":"
                     android:textColor="@color/bg_elemen"
                     android:textSize="17sp" />
@@ -113,9 +119,10 @@
                     android:id="@+id/textView13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="1dp"
                     android:paddingLeft="10dp"
                     android:text=":"
+                    android:fontFamily="sans-serif-condensed-light"
                     android:textColor="@color/bg_elemen"
                     android:textSize="17sp" />
 
@@ -123,9 +130,10 @@
                     android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="1dp"
                     android:paddingLeft="10dp"
                     android:text=":"
+                    android:fontFamily="sans-serif-condensed-light"
                     android:textColor="@color/bg_elemen"
                     android:textSize="17sp" />
 
@@ -133,9 +141,10 @@
                     android:id="@+id/textView15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="1dp"
                     android:paddingLeft="10dp"
                     android:text=":"
+                    android:fontFamily="sans-serif-condensed-light"
                     android:textColor="@color/bg_elemen"
                     android:textSize="17sp" />
 
@@ -153,6 +162,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:paddingLeft="10dp"
+                    android:fontFamily="sans-serif-condensed-light"
                     android:text="Merek"
                     android:textColor="@color/bg_elemen"
                     android:textSize="17sp"
@@ -162,7 +172,8 @@
                     android:id="@+id/data_Kharga"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="1dp"
+                    android:fontFamily="sans-serif-condensed-light"
                     android:paddingLeft="10dp"
                     android:text="Harga"
                     android:textColor="@color/bg_elemen"
@@ -172,9 +183,10 @@
                     android:id="@+id/data_Ktersedia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="1dp"
                     android:paddingLeft="10dp"
                     android:text="Tersedia"
+                    android:fontFamily="sans-serif-condensed-light"
                     android:textColor="@color/bg_elemen"
                     android:textSize="17sp" />
 
@@ -182,9 +194,10 @@
                     android:id="@+id/data_Kjenis"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="1dp"
                     android:paddingLeft="10dp"
                     android:text="Jenis"
+                    android:fontFamily="sans-serif-condensed-light"
                     android:textColor="@color/bg_elemen"
                     android:textSize="17sp" />
 
