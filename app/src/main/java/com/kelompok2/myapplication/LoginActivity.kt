@@ -23,23 +23,17 @@ class LoginActivity : AppCompatActivity() {
 
             if (inusername.text.isNotEmpty() && inpassword.text.isNotEmpty()) {
                 if (inpassword.text.length >= 8){
-
-
-                    if (inusername.text.toString() in user && inpassword.text.toString()== pasword) {
                         startActivity(
                             Intent(this, DashboardActivity::class.java)
                                 .putExtra("username", inusername.text.toString())
                         )
                         alert("Selamat datang di Go-Rent ${inusername.text}")
                         finish()
-                    } else {
-                        alert("pasword atau username salah")
-                    }
-                }else {
+                    }else {
                     alert("Pasword minimal 8 huruf")
                 }
 
-            } else {
+                    }else {
                 alert("Username dan Password tidak boleh kosong!")
             }
 
