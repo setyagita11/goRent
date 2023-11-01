@@ -21,6 +21,7 @@ class InputPesananActivity : AppCompatActivity() {
     private val database by lazy { DBgoRent.getInstance(this) }
     private lateinit var selectedItemStatus : String
     private lateinit var selectedItemKendaraan : String
+    private var opsiKendaraan : String = "null"
     private var opsiStatus : String = "0"
     private lateinit var find : ActivityInputPesananBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +29,7 @@ class InputPesananActivity : AppCompatActivity() {
         find= ActivityInputPesananBinding.inflate(layoutInflater)
         setContentView(find.root)
 
-        var id = intent.getStringExtra("idPesanan")
+        val id = intent.getStringExtra("idPesanan")
 
         if (id==null){
             modeTambah()
@@ -77,8 +78,8 @@ class InputPesananActivity : AppCompatActivity() {
             }
 
         }
-
-//        spnMerk.setSelection(opsiStatus.toInt())
+        val indexSpnKendaraan = if (opsiKendaraan == "null") 0 else newData.indexOf(opsiKendaraan)
+        spnMerk.setSelection(indexSpnKendaraan)
 
 
         find.btnTmbhPsnan.setOnClickListener {
@@ -86,6 +87,7 @@ class InputPesananActivity : AppCompatActivity() {
             if (
                 find.inputUsername.text.isNotEmpty() &&
                 find.inputAlamat.text.isNotEmpty() &&
+                selectedItemKendaraan !== "Pilih Kendaraan" &&
                 selectedItemStatus !== "Status" &&
                 find.inputWaktuSewa.text.isNotEmpty()
 
@@ -112,6 +114,7 @@ class InputPesananActivity : AppCompatActivity() {
             if (
                 find.inputUsername.text.isNotEmpty() &&
                 find.inputAlamat.text.isNotEmpty() &&
+                selectedItemKendaraan !== "Pilih Kendaraan" &&
                 selectedItemStatus !== "Status" &&
                 find.inputWaktuSewa.text.isNotEmpty()
             ) {
@@ -143,11 +146,13 @@ class InputPesananActivity : AppCompatActivity() {
         find.btnTmbhPsnan.visibility = View.GONE
         find.headingPesanan.text="Edit Pesanan"
 
-        val data = database.dao().getIDPesanan(id)[0]
-        find.inputUsername.setText(data.nama_pemesan)
-        find.inputAlamat.setText(data.alamat)
-        find.inputWaktuSewa.setText(data.waktu_sewa.toString())
-        opsiStatus = if (data.status=="Sewa") "1" else "2"
+        val dataPesanan = database.dao().getIDPesanan(id)[0]
+
+        find.inputUsername.setText(dataPesanan.nama_pemesan)
+        find.inputAlamat.setText(dataPesanan.alamat)
+        find.inputWaktuSewa.setText(dataPesanan.waktu_sewa.toString())
+        opsiStatus = if (dataPesanan.status=="Sewa") "1" else "2"
+        opsiKendaraan = dataPesanan.kendaraan
     }
     private fun modeTambah() {
         find.btnUpdatePsnan.visibility = View.GONE

@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView8"
+            android:id="@+id/imgKendaraan"
             android:layout_width="100dp"
             android:layout_height="90dp"
             android:layout_gravity="center_vertical"
