@@ -21,6 +21,8 @@ interface DAO {
     fun getIDkendaraan (id:Int) : List<Kendaraan>
     @Query("SELECT merk FROM kendaraan")
     fun getAllMerk() : Array<String>
+    @Query("SELECT * FROM kendaraan WHERE merk=:merk")
+    fun getAllKendaraanByMerk(merk : String) : List<Kendaraan>
 
       //pesanan
     @Insert
