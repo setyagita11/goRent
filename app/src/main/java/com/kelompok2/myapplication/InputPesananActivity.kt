@@ -86,6 +86,7 @@ class InputPesananActivity : AppCompatActivity() {
             if (
                 find.inputUsername.text.isNotEmpty() &&
                 find.inputAlamat.text.isNotEmpty() &&
+                selectedItemKendaraan !== "Pilih Kendaraan" &&
                 selectedItemStatus !== "Status" &&
                 find.inputWaktuSewa.text.isNotEmpty()
 
@@ -112,6 +113,7 @@ class InputPesananActivity : AppCompatActivity() {
             if (
                 find.inputUsername.text.isNotEmpty() &&
                 find.inputAlamat.text.isNotEmpty() &&
+                selectedItemKendaraan !== "Pilih Kendaraan" &&
                 selectedItemStatus !== "Status" &&
                 find.inputWaktuSewa.text.isNotEmpty()
             ) {
