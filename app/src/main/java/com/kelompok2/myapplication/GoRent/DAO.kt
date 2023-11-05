@@ -35,4 +35,6 @@ interface DAO {
     fun getAllPesanan():List<Pesanan>
     @Query("SELECT*FROM pesanan WHERE id=:id")
     fun getIDPesanan (id:Int) : List<Pesanan>
+    @Query("SELECT * FROM pesanan WHERE kendaraan = :kendaraan")
+    fun cekKendaraanYgDigunakan(kendaraan: String) : Boolean
 }

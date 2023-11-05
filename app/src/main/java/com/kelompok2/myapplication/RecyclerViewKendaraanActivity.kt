@@ -61,7 +61,7 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
             builder.setTitle("Konfirmasi Logout")
             builder.setMessage("Apakah Anda yakin ingin logout?")
 
-            builder.setPositiveButton("ya") { dialog, which ->
+            builder.setPositiveButton("Hapus") { dialog, which ->
 
 
                 val intent = Intent(this, LoginActivity::class.java)
@@ -94,13 +94,19 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
             }
             setPositiveButton("Hapus") {
                 dialogInterface:DialogInterface,i :Int-> dialogInterface.dismiss()
-                CoroutineScope(Dispatchers.IO).launch{
-                    db.dao().DeleteKendaraan(kendaraan)
+
+//              cek apakah kendaraan digunakan dalam pesanan
+                if (db.dao().cekKendaraanYgDigunakan(kendaraan.merk)) {
+                    alert("Kendaraan sedang digunakan di Pesanan")
+                } else {
+                    CoroutineScope(Dispatchers.IO).launch{
+                        db.dao().DeleteKendaraan(kendaraan)
+                    }
+                    recreate()
+                    alert("data ${kendaraan.merk} berhasil dihapus")
                 }
-                recreate()
-                alert("data ${kendaraan.merk} berhasil dihapus")
-                }
-                dialog.show()
+            }
+            dialog.show()
         }
     }
 

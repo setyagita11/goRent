@@ -40,8 +40,5 @@ class DetailPesananActivity : AppCompatActivity() {
 
 
 
-
-
-
     }
 }
