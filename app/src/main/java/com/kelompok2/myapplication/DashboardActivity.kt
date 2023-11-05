@@ -26,14 +26,14 @@ class DashboardActivity : AppCompatActivity() {
         // imageList.add(SlideModel("String Url" or R.drawable)
         // imageList.add(SlideModel("String Url" or R.drawable, "title") You can add title
 
-        imageList.add(SlideModel(R.drawable.go_rent_motor, ))
-        imageList.add(SlideModel(R.drawable.go_rent_mobil, ))
+        imageList.add(SlideModel(R.drawable.picture_motor, ))
+        imageList.add(SlideModel(R.drawable.picture_mobil, ))
 
         val imageSlider = findViewById<ImageSlider>(R.id.image_slider)
         imageSlider.setImageList(imageList)
 
 
-        find.tvWellcome.text = "Hello, $username"
+        find.tvWellcome.text = "Halo, $username"
 
         find.btnKendaraan.setOnClickListener {
             startActivity(

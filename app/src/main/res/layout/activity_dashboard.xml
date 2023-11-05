@@ -114,7 +114,7 @@
                 android:gravity="center"
                 android:fontFamily="sans-serif-condensed-light"
                 android:textColor="@color/bg_elemen"
-                android:text="Home" />
+                android:text="Beranda" />
 
         </LinearLayout>
 
