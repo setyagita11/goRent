@@ -23,16 +23,22 @@ class DetailPesananActivity : AppCompatActivity() {
         find.btnBackPsnan.setOnClickListener {onBackPressed()}
 
         var id = intent.getStringExtra("idPesanan").toString().toInt()
-
         val data = db.dao().getIDPesanan(id)[0]
         val dataKendaraan = db.dao().getAllKendaraanByMerk(data.kendaraan)[0]
+        val biaya= data.waktu_sewa * dataKendaraan.harga_sewa
 
         find.dataPnama.setText(data.nama_pemesan)
         find.dataPmerek.setText(data.kendaraan)
         find.dataPalamat.setText(data.alamat)
         find.dataPdurasi.setText(data.waktu_sewa.toString())
         find.dataPstatus.setText(data.status)
+        find.Biaya.setText(biaya.toString())
+
+
         if (dataKendaraan.jenis == "Motor") find.imgKendaraan.setImageResource(R.drawable.motor)
+
+
+
 
 
 
