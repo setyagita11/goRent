@@ -20,6 +20,7 @@ class DashboardActivity : AppCompatActivity() {
         find = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(find.root)
 
+
         val username = intent.getStringExtra("username").toString()
         val imageList = ArrayList<SlideModel>() // Create image list
 
