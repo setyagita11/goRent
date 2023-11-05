@@ -26,8 +26,8 @@ class DashboardActivity : AppCompatActivity() {
         // imageList.add(SlideModel("String Url" or R.drawable)
         // imageList.add(SlideModel("String Url" or R.drawable, "title") You can add title
 
-        imageList.add(SlideModel(R.drawable.picture_motor, ))
-        imageList.add(SlideModel(R.drawable.picture_mobil, ))
+        imageList.add(SlideModel(R.drawable.dashboard_motor, ))
+        imageList.add(SlideModel(R.drawable.dashboard_mobil, ))
 
         val imageSlider = findViewById<ImageSlider>(R.id.image_slider)
         imageSlider.setImageList(imageList)
@@ -50,7 +50,7 @@ class DashboardActivity : AppCompatActivity() {
         find.logout.setOnClickListener() {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Konfirmasi Logout")
-            builder.setMessage("Apakah Anda yakin ingin logout?")
+            builder.setMessage("Apakah anda yakin ingin Logout?")
 
             builder.setPositiveButton("Ya") { dialog, which ->
 
