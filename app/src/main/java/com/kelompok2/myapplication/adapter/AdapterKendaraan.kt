@@ -69,5 +69,4 @@ class AdapterKendaraan (val list: ArrayList<Kendaraan> ,val listener: kendaraanv
         return list.size
     }
 
-
 }

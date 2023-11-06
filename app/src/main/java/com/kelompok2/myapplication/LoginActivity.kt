@@ -22,18 +22,21 @@ class LoginActivity : AppCompatActivity() {
         find.btnLogin.setOnClickListener {
 
             if (inusername.text.isNotEmpty() && inpassword.text.isNotEmpty()) {
+
                 if (inpassword.text.length >= 8){
-                        startActivity(
-                            Intent(this, DashboardActivity::class.java)
-                                .putExtra("username", inusername.text.toString())
-                        )
-                        alert("Selamat datang di Go-Rent ${inusername.text}")
-                        finish()
-                    }else {
+
+                    startActivity(
+                        Intent(this, DashboardActivity::class.java)
+                            .putExtra("username", inusername.text.toString())
+                    )
+                    alert("Selamat datang di Go-Rent ${inusername.text}")
+                    finish()
+
+                }else {
                     alert("Pasword minimal 8 huruf")
                 }
 
-                    }else {
+            }else {
                 alert("Username dan Password tidak boleh kosong!")
             }
 
@@ -42,8 +45,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun alert(msg: String) {
-
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-
     }
 }

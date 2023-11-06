@@ -1,10 +1,12 @@
 package com.kelompok2.myapplication.GoRent
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import java.util.concurrent.Flow
 
 @Dao
 interface DAO {
@@ -22,7 +24,11 @@ interface DAO {
     @Query("SELECT merk FROM kendaraan")
     fun getAllMerk() : Array<String>
     @Query("SELECT * FROM kendaraan WHERE merk=:merk")
-    fun getAllKendaraanByMerk(merk : String) : List<Kendaraan>
+    fun getKendaraanByMerk(merk : String) : List<Kendaraan>
+    @Query("SELECT persediaan FROM kendaraan")
+    fun getJumlahKendaraan() : LiveData<Array<Int>>
+    @Query("UPDATE kendaraan SET persediaan = :newPersediaan WHERE merk = :merk")
+    fun updatePersediaan(newPersediaan : Int, merk: String)
 
       //pesanan
     @Insert
@@ -37,4 +43,7 @@ interface DAO {
     fun getIDPesanan (id:Int) : List<Pesanan>
     @Query("SELECT * FROM pesanan WHERE kendaraan = :kendaraan")
     fun cekKendaraanYgDigunakan(kendaraan: String) : Boolean
+    @Query("SELECT COUNT(*) FROM pesanan WHERE status = 'Sewa'")
+    fun getJumlahPesananSewa() : LiveData<Int>
+
 }

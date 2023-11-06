@@ -16,36 +16,35 @@ import com.kelompok2.myapplication.databinding.ActivityInputPesananBinding
 
 class InputPesananActivity : AppCompatActivity() {
 
-
-    private lateinit var adapter: AdapterPesanan
-    private val database by lazy { DBgoRent.getInstance(this) }
+    private lateinit var find : ActivityInputPesananBinding
     private lateinit var selectedItemStatus : String
     private lateinit var selectedItemKendaraan : String
+    private val database by lazy { DBgoRent.getInstance(this) }
     private var opsiKendaraan : String = "null"
     private var opsiStatus : String = "0"
-    private lateinit var find : ActivityInputPesananBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         find= ActivityInputPesananBinding.inflate(layoutInflater)
         setContentView(find.root)
 
+        find.btnKembali.setOnClickListener {onBackPressed()}
+
+//        mengambil id pesanan
         val id = intent.getStringExtra("idPesanan")
 
+//        indentifikasi mode
         if (id==null){
             modeTambah()
         }else{
             modeEdit(id.toString().toInt())
         }
 
-        find.btnKembali.setOnClickListener {onBackPressed()}
-
+//        set spiner status
         val dataStatus = arrayOf("Status", "Sewa", "Selesai")
-
         val spnStatus = find.status
         val spnStatusAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, dataStatus)
         spnStatusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spnStatus.adapter = spnStatusAdapter
-
         spnStatus.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedItemStatus = parent?.getItemAtPosition(position).toString()
@@ -56,18 +55,15 @@ class InputPesananActivity : AppCompatActivity() {
             }
 
         }
-
         spnStatus.setSelection(opsiStatus.toInt())
 
-//        spinner kendaraan
+//        set spinner kendaraan
         val dataMerk = database.dao().getAllMerk()
         val newData = arrayOf("Pilih Kendaraan") + dataMerk
-
         val spnMerk = find.plihKndraan
         val spnMerkAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, newData)
         spnMerkAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spnMerk.adapter = spnMerkAdapter
-
         spnMerk.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedItemKendaraan = parent?.getItemAtPosition(position).toString()
@@ -81,9 +77,12 @@ class InputPesananActivity : AppCompatActivity() {
         val indexSpnKendaraan = if (opsiKendaraan == "null") 0 else newData.indexOf(opsiKendaraan)
         spnMerk.setSelection(indexSpnKendaraan)
 
-
+//        ketika btn tambah di klik
         find.btnTmbhPsnan.setOnClickListener {
 
+            val dataKdrn = database.dao().getKendaraanByMerk(selectedItemKendaraan)[0]
+
+//            validasi jika kosong
             if (
                 find.inputUsername.text.isNotEmpty() &&
                 find.inputAlamat.text.isNotEmpty() &&
@@ -93,24 +92,44 @@ class InputPesananActivity : AppCompatActivity() {
 
             ) {
 
-                database.dao().InsertPesanan(
-                    Pesanan(
-                        0,
-                        find.inputUsername.text.toString(),
-                        find.inputAlamat.text.toString(),
-                        selectedItemKendaraan,
-                        find.inputWaktuSewa.text.toString().toInt(),
-                        selectedItemStatus
+//                validasi ketika persediaan kosong
+                if (dataKdrn.persediaan != 0) {
+
+                    database.dao().InsertPesanan(
+                        Pesanan(
+                            0,
+                            find.inputUsername.text.toString(),
+                            find.inputAlamat.text.toString(),
+                            selectedItemKendaraan,
+                            find.inputWaktuSewa.text.toString().toInt(),
+                            selectedItemStatus
+                        )
                     )
-                )
-                onBackPressed()
-                alert("Data berhasil ditambahkan")
+
+//                    mengubah persediaan
+                    if (selectedItemStatus == "Sewa"){
+                        val newPersediaan = dataKdrn.persediaan - 1
+                        database.dao().updatePersediaan(newPersediaan, dataKdrn.merk)
+                    }
+
+                    onBackPressed()
+                    alert("Data berhasil ditambahkan")
+                } else {
+                    alert("Kendaraan yang anda pilih tidak tersedia")
+                }
+
             }else{
                 alert("isi data terlebih dahulu")
             }
         }
 
+//        ketika btn update di klik
         find.btnUpdatePsnan.setOnClickListener {
+
+            val dataKdrn = database.dao().getKendaraanByMerk(selectedItemKendaraan)[0]
+            var newPersediaan : Int
+
+//            validasi jika kosong
             if (
                 find.inputUsername.text.isNotEmpty() &&
                 find.inputAlamat.text.isNotEmpty() &&
@@ -119,18 +138,30 @@ class InputPesananActivity : AppCompatActivity() {
                 find.inputWaktuSewa.text.isNotEmpty()
             ) {
 
-                database.dao().UpdatePesanan(Pesanan(
-                    id.toString().toInt(),
+//                mengubah persediaan
+                if (selectedItemStatus == "Selesai"){
+                    newPersediaan = dataKdrn.persediaan + 1
+                } else {
+                    newPersediaan = dataKdrn.persediaan - 1
+                }
+
+//                validasi ketika persediaan menjadi minus
+                if (newPersediaan >= 0){
+                    database.dao().UpdatePesanan(Pesanan(
+                        id.toString().toInt(),
                         find.inputUsername.text.toString(),
                         find.inputAlamat.text.toString(),
                         selectedItemKendaraan,
                         find.inputWaktuSewa.text.toString().toInt(),
                         selectedItemStatus
                     )
-                )
-
-                onBackPressed()
-                alert("Data berhasil diubah")
+                    )
+                    database.dao().updatePersediaan(newPersediaan, dataKdrn.merk)
+                    onBackPressed()
+                    alert("Data berhasil diubah")
+                } else {
+                    alert("Tidak dapat diubah karena persediaan kosong")
+                }
             }else{
                 alert("Ubah data terlebih dahulu")
             }

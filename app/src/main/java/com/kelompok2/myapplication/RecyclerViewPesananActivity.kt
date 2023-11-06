@@ -60,8 +60,6 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
             builder.setMessage("Apakah Anda yakin ingin logout?")
 
             builder.setPositiveButton("ya") { dialog, which ->
-
-
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -88,12 +86,15 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
             setPositiveButton("hapus"){
                 dialogInterface:DialogInterface,i:Int->
                 dialogInterface.dismiss()
-                CoroutineScope(Dispatchers.IO).launch {
-                    db.dao().DeletePesanan(pesanan)
-
+                if (pesanan.status == "Selesai") {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        db.dao().DeletePesanan(pesanan)
+                    }
+                    recreate()
+                    alert("Pesanan ${pesanan.nama_pemesan} berhasil dihapus")
+                } else {
+                    alert("Pesanan ${pesanan.nama_pemesan} belum selesai")
                 }
-                recreate()
-                alert("data ${pesanan.nama_pemesan} berhasil dihapus")
             }
             dialog.show()
         }

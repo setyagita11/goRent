@@ -21,8 +21,8 @@ import java.util.*
 class RecyclerViewKendaraanActivity : AppCompatActivity() {
 
     private lateinit var find : ActivityRecyclerViewKendaraanBinding
-    private val db by lazy { DBgoRent.getInstance(this) }
     private lateinit var adapter : AdapterKendaraan
+    private val db by lazy { DBgoRent.getInstance(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,8 +50,9 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
         find.listKndraan.addItemDecoration(DividerItemDecoration(applicationContext, LinearLayoutManager.VERTICAL))
 
         find.btnTambahKendaraan.setOnClickListener {
-        startActivity(
-            Intent(this, InputKendaraanActivity::class.java ))
+            startActivity(
+                Intent(this, InputKendaraanActivity::class.java )
+                )
         }
 
 
@@ -61,8 +62,7 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
             builder.setTitle("Konfirmasi Logout")
             builder.setMessage("Apakah Anda yakin ingin logout?")
 
-            builder.setPositiveButton("Hapus") { dialog, which ->
-
+            builder.setPositiveButton("Ya") { dialog, which ->
 
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
@@ -75,7 +75,6 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
 
             val dialog = builder.create()
             dialog.show()
-
 
         }
     }
@@ -90,10 +89,10 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
             setMessage("Apakah anda yakin menghapus data ${kendaraan.merk}?")
 
             setNegativeButton("Batal"){
-                        dialogInterface:DialogInterface, i:Int -> dialogInterface.dismiss()
+                    dialogInterface:DialogInterface, i:Int -> dialogInterface.dismiss()
             }
             setPositiveButton("Hapus") {
-                dialogInterface:DialogInterface,i :Int-> dialogInterface.dismiss()
+                    dialogInterface:DialogInterface,i :Int-> dialogInterface.dismiss()
 
 //              cek apakah kendaraan digunakan dalam pesanan
                 if (db.dao().cekKendaraanYgDigunakan(kendaraan.merk)) {
@@ -128,10 +127,7 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
     }
 
     private fun alert(msg: String) {
-
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-
-
     }
 
 }

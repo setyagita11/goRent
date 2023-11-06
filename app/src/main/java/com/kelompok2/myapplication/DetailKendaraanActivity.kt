@@ -19,9 +19,11 @@ class DetailKendaraanActivity : AppCompatActivity() {
 
         find.btnBack.setOnClickListener {onBackPressed()}
 
-        var id = intent.getStringExtra("idKendaraan").toString().toInt()
-
+//        mengambil data dari database
+        val id = intent.getStringExtra("idKendaraan").toString().toInt()
         val data = db.dao().getIDkendaraan(id)[0]
+
+//        setdata ke layout
         find.dataKmerek.setText(data.merk)
         find.dataKharga.setText(data.harga_sewa.toString())
         find.dataKtersedia.setText(data.persediaan.toString())
