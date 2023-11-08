@@ -43,7 +43,7 @@ interface DAO {
     fun getIDPesanan (id:Int) : List<Pesanan>
     @Query("SELECT * FROM pesanan WHERE kendaraan = :kendaraan")
     fun cekKendaraanYgDigunakan(kendaraan: String) : Boolean
-    @Query("SELECT COUNT(*) FROM pesanan WHERE status = 'Sewa'")
+    @Query("SELECT COUNT(*) FROM pesanan")
     fun getJumlahPesananSewa() : LiveData<Int>
 
 }
