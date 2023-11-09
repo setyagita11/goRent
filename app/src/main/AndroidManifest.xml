@@ -14,6 +14,9 @@
         android:theme="@style/Theme.GoRent"
         tools:targetApi="31">
         <activity
+            android:name=".bootomsheetcode"
+            android:exported="false" />
+        <activity
             android:name=".DetailKendaraanActivity"
             android:exported="false" />
         <activity

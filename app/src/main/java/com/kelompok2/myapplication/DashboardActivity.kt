@@ -1,15 +1,22 @@
 package com.kelompok2.myapplication
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.models.SlideModel
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
 import com.kelompok2.myapplication.GoRent.DBgoRent
 import com.kelompok2.myapplication.databinding.ActivityDashboardBinding
+
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -31,21 +38,36 @@ class DashboardActivity : AppCompatActivity() {
         val imageSlider = findViewById<ImageSlider>(R.id.image_slider)
         imageSlider.setImageList(imageList)
 
-//        menghitung jumlah kendaraan
-        val jumlahKendaraan = db.dao().getJumlahKendaraan()
-        jumlahKendaraan.observe(this, Observer { count ->
-            var totalKendaraan = 0
-            count.forEach { item ->
-                totalKendaraan += item
-            }
-            find.tvJumlahKendaraan.setText(totalKendaraan.toString())
-        })
 
-//        menghitung jumlah pesanan dengan status sewa
-        val jumlahPesanan = db.dao().getJumlahPesananSewa()
-        jumlahPesanan.observe(this, Observer { totalPsn ->
-            find.tvJumlahPesanan.setText(totalPsn.toString())
-        })
+        val pieChart: PieChart = findViewById(R.id.pieChart)
+
+        // Data untuk Pie Chart
+        val entries = listOf(
+            PieEntry(30f, "Data 1"),
+            PieEntry(50f, "Data 2"),
+            PieEntry(20f, "Data 3")
+        )
+
+        // Konfigurasi warna dan label
+        val colors = listOf(Color.BLUE, Color.GREEN, Color.RED)
+        val dataSet = PieDataSet(entries, "Pie Chart")
+        dataSet.colors = colors
+
+        // Konfigurasi Pie Data
+        val pieData = PieData(dataSet)
+        pieChart.data = pieData
+
+        // Konfigurasi tampilan
+        pieChart.description.isEnabled = false
+        pieChart.isRotationEnabled = true
+        pieChart.setHoleColor(Color.TRANSPARENT)
+        pieChart.animateY(1000)
+
+        // Refresh chart
+        pieChart.invalidate()
+
+
+
 
 //        mengambil data username
         val username = intent.getStringExtra("username").toString()
@@ -81,6 +103,9 @@ class DashboardActivity : AppCompatActivity() {
             val dialog = builder.create()
             dialog.show()
         }
+
+
+
     }
 
 //    konfirmasi keluar apk
