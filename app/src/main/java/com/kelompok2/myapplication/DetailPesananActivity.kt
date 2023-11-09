@@ -25,12 +25,12 @@ class DetailPesananActivity : AppCompatActivity() {
 //        mengambil data dari database
         var id = intent.getStringExtra("idPesanan").toString().toInt()
         val data = db.dao().getIDPesanan(id)[0]
-        val dataKendaraan = db.dao().getKendaraanByMerk(data.kendaraan)[0]
+        val dataKendaraan = db.dao().getKendaraanByID(data.id_kendaraan)[0]
         val biaya = data.waktu_sewa * dataKendaraan.harga_sewa
 
 //        setdata ke layout
         find.dataPnama.setText(data.nama_pemesan)
-        find.dataPmerek.setText(data.kendaraan)
+        find.dataPmerek.setText(dataKendaraan.merk)
         find.dataPalamat.setText(data.alamat)
         find.dataPdurasi.setText(data.waktu_sewa.toString())
         find.dataPstatus.setText(data.status)

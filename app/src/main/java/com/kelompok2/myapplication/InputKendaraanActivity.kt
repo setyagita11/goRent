@@ -135,7 +135,7 @@ class InputKendaraanActivity : AppCompatActivity() {
         find.btnTmbh.visibility = View.GONE
         find.headingKendaraan.text="Edit Kendaraan"
 
-        val dataKendaraan = database.dao().getIDkendaraan(id)[0]
+        val dataKendaraan = database.dao().getKendaraanByID(id)[0]
         find.inputMerek.setText(dataKendaraan.merk)
         find.inputHarga.setText(dataKendaraan.harga_sewa.toString())
         find.inputTersedia.setText(dataKendaraan.persediaan.toString())

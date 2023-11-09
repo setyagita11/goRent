@@ -95,7 +95,7 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
                     dialogInterface:DialogInterface,i :Int-> dialogInterface.dismiss()
 
 //              cek apakah kendaraan digunakan dalam pesanan
-                if (db.dao().cekKendaraanYgDigunakan(kendaraan.merk)) {
+                if (db.dao().cekKendaraanYgDigunakan(kendaraan.id)) {
                     alert("Kendaraan sedang digunakan di Pesanan")
                 } else {
                     CoroutineScope(Dispatchers.IO).launch{

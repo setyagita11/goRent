@@ -20,7 +20,7 @@ interface DAO {
     @Delete
     fun DeleteKendaraan(kendaraan: Kendaraan)
     @Query("SELECT*FROM kendaraan WHERE id=:id")
-    fun getIDkendaraan (id:Int) : List<Kendaraan>
+    fun getKendaraanByID (id:Int) : List<Kendaraan>
     @Query("SELECT merk FROM kendaraan")
     fun getAllMerk() : Array<String>
     @Query("SELECT * FROM kendaraan WHERE merk=:merk")
@@ -29,6 +29,8 @@ interface DAO {
     fun getJumlahKendaraan() : LiveData<Array<Int>>
     @Query("UPDATE kendaraan SET persediaan = :newPersediaan WHERE merk = :merk")
     fun updatePersediaan(newPersediaan : Int, merk: String)
+    @Query("SELECT id FROM kendaraan WHERE merk = :merk")
+    fun getID(merk: String) : Int
 
       //pesanan
     @Insert
@@ -37,13 +39,15 @@ interface DAO {
     fun UpdatePesanan(pesanan: Pesanan)
     @Delete
     fun DeletePesanan(pesanan: Pesanan)
-    @Query("SELECT*FROM pesanan ")
+    @Query("SELECT*FROM pesanan ORDER BY id DESC")
     fun getAllPesanan():List<Pesanan>
     @Query("SELECT*FROM pesanan WHERE id=:id")
     fun getIDPesanan (id:Int) : List<Pesanan>
-    @Query("SELECT * FROM pesanan WHERE kendaraan = :kendaraan")
-    fun cekKendaraanYgDigunakan(kendaraan: String) : Boolean
+    @Query("SELECT * FROM pesanan WHERE id_kendaraan = :id_kendaraan")
+    fun cekKendaraanYgDigunakan(id_kendaraan: Int) : Boolean
     @Query("SELECT COUNT(*) FROM pesanan")
     fun getJumlahPesananSewa() : LiveData<Int>
+    @Query("SELECT COUNT(*) FROM pesanan WHERE status = 'Selesai'")
+    fun getJumlahPesananSelesai() : LiveData<Int>
 
 }

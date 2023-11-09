@@ -80,7 +80,8 @@ class InputPesananActivity : AppCompatActivity() {
 //        ketika btn tambah di klik
         find.btnTmbhPsnan.setOnClickListener {
 
-            val dataKdrn = database.dao().getKendaraanByMerk(selectedItemKendaraan)[0]
+            val idKendaraan = database.dao().getID(selectedItemKendaraan)
+            val dataKdrn = database.dao().getKendaraanByID(idKendaraan)[0]
 
 //            validasi jika kosong
             if (
@@ -100,7 +101,7 @@ class InputPesananActivity : AppCompatActivity() {
                             0,
                             find.inputUsername.text.toString(),
                             find.inputAlamat.text.toString(),
-                            selectedItemKendaraan,
+                            idKendaraan,
                             find.inputWaktuSewa.text.toString().toInt(),
                             selectedItemStatus
                         )
@@ -126,7 +127,8 @@ class InputPesananActivity : AppCompatActivity() {
 //        ketika btn update di klik
         find.btnUpdatePsnan.setOnClickListener {
 
-            val dataKdrn = database.dao().getKendaraanByMerk(selectedItemKendaraan)[0]
+            val idKendaraan = database.dao().getID(selectedItemKendaraan)
+            val dataKdrn = database.dao().getKendaraanByID(idKendaraan)[0]
             var newPersediaan : Int
 
 //            validasi jika kosong
@@ -151,7 +153,7 @@ class InputPesananActivity : AppCompatActivity() {
                         id.toString().toInt(),
                         find.inputUsername.text.toString(),
                         find.inputAlamat.text.toString(),
-                        selectedItemKendaraan,
+                        idKendaraan,
                         find.inputWaktuSewa.text.toString().toInt(),
                         selectedItemStatus
                     )
@@ -178,12 +180,13 @@ class InputPesananActivity : AppCompatActivity() {
         find.headingPesanan.text="Edit Pesanan"
 
         val dataPesanan = database.dao().getIDPesanan(id)[0]
+        val dataKdrn = database.dao().getKendaraanByID(dataPesanan.id)[0]
 
         find.inputUsername.setText(dataPesanan.nama_pemesan)
         find.inputAlamat.setText(dataPesanan.alamat)
         find.inputWaktuSewa.setText(dataPesanan.waktu_sewa.toString())
         opsiStatus = if (dataPesanan.status=="Sewa") "1" else "2"
-        opsiKendaraan = dataPesanan.kendaraan
+        opsiKendaraan = dataKdrn.merk
     }
     private fun modeTambah() {
         find.btnUpdatePsnan.visibility = View.GONE

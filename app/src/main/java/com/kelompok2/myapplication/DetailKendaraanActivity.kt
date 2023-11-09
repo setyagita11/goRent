@@ -21,7 +21,7 @@ class DetailKendaraanActivity : AppCompatActivity() {
 
 //        mengambil data dari database
         val id = intent.getStringExtra("idKendaraan").toString().toInt()
-        val data = db.dao().getIDkendaraan(id)[0]
+        val data = db.dao().getKendaraanByID(id)[0]
 
 //        setdata ke layout
         find.dataKmerek.setText(data.merk)
