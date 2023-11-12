@@ -110,11 +110,12 @@ class InputPesananActivity : AppCompatActivity() {
 //                    mengubah persediaan
                     if (selectedItemStatus == "Sewa"){
                         val newPersediaan = dataKdrn.persediaan - 1
-                        database.dao().updatePersediaan(newPersediaan, dataKdrn.merk)
+                        database.dao().updatePersediaan(newPersediaan, idKendaraan)
                     }
 
                     onBackPressed()
                     alert("Data berhasil ditambahkan")
+
                 } else {
                     alert("Kendaraan yang anda pilih tidak tersedia")
                 }
@@ -158,7 +159,7 @@ class InputPesananActivity : AppCompatActivity() {
                         selectedItemStatus
                     )
                     )
-                    database.dao().updatePersediaan(newPersediaan, dataKdrn.merk)
+                    database.dao().updatePersediaan(newPersediaan, idKendaraan)
                     onBackPressed()
                     alert("Data berhasil diubah")
                 } else {
@@ -180,7 +181,7 @@ class InputPesananActivity : AppCompatActivity() {
         find.headingPesanan.text="Edit Pesanan"
 
         val dataPesanan = database.dao().getIDPesanan(id)[0]
-        val dataKdrn = database.dao().getKendaraanByID(dataPesanan.id)[0]
+        val dataKdrn = database.dao().getKendaraanByID(dataPesanan.id_kendaraan)[0]
 
         find.inputUsername.setText(dataPesanan.nama_pemesan)
         find.inputAlamat.setText(dataPesanan.alamat)

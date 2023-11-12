@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -30,49 +31,6 @@ class DashboardActivity : AppCompatActivity() {
         find = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(find.root)
 
-        val imageList = ArrayList<SlideModel>() // Create image list
-
-        imageList.add(SlideModel(R.drawable.dashboard_motor, ))
-        imageList.add(SlideModel(R.drawable.dashboard_mobil, ))
-
-        val imageSlider = findViewById<ImageSlider>(R.id.image_slider)
-        imageSlider.setImageList(imageList)
-
-
-        val pieChart: PieChart = findViewById(R.id.pieChart)
-
-        // Data untuk Pie Chart
-        val entries = listOf(
-            PieEntry(30f, "Data 1"),
-            PieEntry(50f, "Data 2"),
-            PieEntry(20f, "Data 3")
-        )
-
-        // Konfigurasi warna dan label
-        val colors = listOf(Color.BLUE, Color.GREEN, Color.RED)
-        val dataSet = PieDataSet(entries, "Pie Chart")
-        dataSet.colors = colors
-
-        // Konfigurasi Pie Data
-        val pieData = PieData(dataSet)
-        pieChart.data = pieData
-
-        // Konfigurasi tampilan
-        pieChart.description.isEnabled = false
-        pieChart.isRotationEnabled = true
-        pieChart.setHoleColor(Color.TRANSPARENT)
-        pieChart.animateY(1000)
-
-        // Refresh chart
-        pieChart.invalidate()
-
-
-
-
-//        mengambil data username
-        val username = intent.getStringExtra("username").toString()
-        find.tvWellcome.text = "Halo, $username"
-
 //        navbar
         find.btnKendaraan.setOnClickListener {
             startActivity(
@@ -87,25 +45,79 @@ class DashboardActivity : AppCompatActivity() {
 
 //        btn logout
         find.logout.setOnClickListener() {
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Konfirmasi Logout")
-            builder.setMessage("Apakah anda yakin ingin Logout?")
-
-            builder.setPositiveButton("Ya") { dialog, which ->
-
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-            builder.setNegativeButton("Tidak") { dialog, which ->
-                dialog.dismiss()
-            }
-            val dialog = builder.create()
-            dialog.show()
+            logout()
         }
 
+//        mengambil data username
+        val username = intent.getStringExtra("username").toString()
+        find.tvWellcome.text = "Halo, $username"
 
+//        image slider
+        val imageList = ArrayList<SlideModel>()
+        imageList.add(SlideModel(R.drawable.dashboard_motor, ))
+        imageList.add(SlideModel(R.drawable.dashboard_mobil, ))
+        val imageSlider = findViewById<ImageSlider>(R.id.image_slider)
+        imageSlider.setImageList(imageList)
 
+//        mengambil data secara live
+        val jumlahPesananSelesai = db.dao().getJumlahPesananSelesai()
+        val jumlahPesananSewa = db.dao().getJumlahPesananSewa()
+        jumlahPesananSewa.observe(this, Observer { psnSewa ->
+            jumlahPesananSelesai.observe(this, Observer { psnSelesai ->
+
+                val totalPsn = psnSewa.toFloat() + psnSelesai.toFloat()
+                val valuePsnSewa = (psnSewa / totalPsn) * 100
+                val valuePsnSelesai = (psnSelesai / totalPsn) * 100
+
+                val entries = listOf(
+                    PieEntry(valuePsnSewa, "Sewa"),
+                    PieEntry(valuePsnSelesai, "Selesai")
+                )
+
+                setPieChart(entries)
+            })
+        })
+
+    }
+
+    private fun logout() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Konfirmasi Logout")
+        builder.setMessage("Apakah anda yakin ingin Logout?")
+
+        builder.setPositiveButton("Ya") { dialog, which ->
+
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+        builder.setNegativeButton("Tidak") { dialog, which ->
+            dialog.dismiss()
+        }
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    private fun setPieChart(entries : List<PieEntry>){
+
+        val pieChart = find.pieChart
+        // Konfigurasi warna dan label
+        val colors = listOf(Color.parseColor("#dc244b"), Color.parseColor("#50b99b"))
+        val dataSet = PieDataSet(entries, "")
+        dataSet.colors = colors
+
+        // Konfigurasi Pie Data
+        val pieData = PieData(dataSet)
+        pieChart.data = pieData
+
+        // Konfigurasi tampilan
+        pieChart.description.isEnabled = false
+        pieChart.isRotationEnabled = false
+        pieChart.setHoleColor(Color.TRANSPARENT)
+        pieChart.animateY(1000)
+
+        // Refresh chart
+        pieChart.invalidate()
     }
 
 //    konfirmasi keluar apk

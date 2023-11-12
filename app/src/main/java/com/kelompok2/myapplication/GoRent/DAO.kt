@@ -23,12 +23,10 @@ interface DAO {
     fun getKendaraanByID (id:Int) : List<Kendaraan>
     @Query("SELECT merk FROM kendaraan")
     fun getAllMerk() : Array<String>
-    @Query("SELECT * FROM kendaraan WHERE merk=:merk")
-    fun getKendaraanByMerk(merk : String) : List<Kendaraan>
     @Query("SELECT persediaan FROM kendaraan")
     fun getJumlahKendaraan() : LiveData<Array<Int>>
-    @Query("UPDATE kendaraan SET persediaan = :newPersediaan WHERE merk = :merk")
-    fun updatePersediaan(newPersediaan : Int, merk: String)
+    @Query("UPDATE kendaraan SET persediaan = :newPersediaan WHERE id = :id")
+    fun updatePersediaan(newPersediaan : Int, id: Int)
     @Query("SELECT id FROM kendaraan WHERE merk = :merk")
     fun getID(merk: String) : Int
 
@@ -45,7 +43,7 @@ interface DAO {
     fun getIDPesanan (id:Int) : List<Pesanan>
     @Query("SELECT * FROM pesanan WHERE id_kendaraan = :id_kendaraan")
     fun cekKendaraanYgDigunakan(id_kendaraan: Int) : Boolean
-    @Query("SELECT COUNT(*) FROM pesanan")
+    @Query("SELECT COUNT(*) FROM pesanan WHERE status = 'Sewa'")
     fun getJumlahPesananSewa() : LiveData<Int>
     @Query("SELECT COUNT(*) FROM pesanan WHERE status = 'Selesai'")
     fun getJumlahPesananSelesai() : LiveData<Int>
