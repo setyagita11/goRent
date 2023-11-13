@@ -1,5 +1,6 @@
 package com.kelompok2.myapplication
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -81,11 +82,18 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun logout() {
+
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Konfirmasi Logout")
         builder.setMessage("Apakah anda yakin ingin Logout?")
 
         builder.setPositiveButton("Ya") { dialog, which ->
+
+//            menghapus data jika
+            val sharedPreferences = getSharedPreferences("DataUser", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.clear()
+            editor.apply()
 
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
@@ -96,6 +104,7 @@ class DashboardActivity : AppCompatActivity() {
         }
         val dialog = builder.create()
         dialog.show()
+
     }
 
     private fun setPieChart(entries : List<PieEntry>){

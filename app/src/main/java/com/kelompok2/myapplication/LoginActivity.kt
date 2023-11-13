@@ -1,5 +1,6 @@
 package com.kelompok2.myapplication
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,22 +16,25 @@ class LoginActivity : AppCompatActivity() {
         find = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(find.root)
 
+        val sharedPreferences = getSharedPreferences("DataUser", Context.MODE_PRIVATE)
+
         val inusername  = find.inputUsername
         val inpassword = find.inputPassword
         val pasword= "12345678"
         val user = listOf<String>("guru" ,"murid")
+        val keyUser = sharedPreferences.getString("username", "")
+
+        if (!keyUser.isNullOrEmpty()) {
+            login(keyUser)
+        }
+
         find.btnLogin.setOnClickListener {
 
             if (inusername.text.isNotEmpty() && inpassword.text.isNotEmpty()) {
 
                 if (inpassword.text.length >= 8){
 
-                    startActivity(
-                        Intent(this, DashboardActivity::class.java)
-                            .putExtra("username", inusername.text.toString())
-                    )
-                    alert("Selamat datang di Go-Rent ${inusername.text}")
-                    finish()
+                    login(inusername.text.toString())
 
                 }else {
                     alert("Pasword minimal 8 huruf")
@@ -41,6 +45,23 @@ class LoginActivity : AppCompatActivity() {
             }
 
         }
+
+    }
+
+    private fun login(username: String) {
+
+        if (find.rememberMe.isChecked){
+            val sharedPreferences = getSharedPreferences("DataUser", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putString("username", username)
+            editor.apply()
+        }
+        startActivity(
+            Intent(this, DashboardActivity::class.java)
+                .putExtra("username", username)
+        )
+        alert("Selamat datang di Go-Rent $username")
+        finish()
 
     }
 
