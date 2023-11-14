@@ -128,8 +128,8 @@ class InputKendaraanActivity : AppCompatActivity() {
     }
 
 //    fungtion pemberitahuan
-    private fun alert(msg: String) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    private fun alert(pesan: String) {
+        Toast.makeText(this, pesan, Toast.LENGTH_SHORT).show()
     }
 
 //    mode edit

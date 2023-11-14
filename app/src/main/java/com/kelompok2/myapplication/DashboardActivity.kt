@@ -69,14 +69,23 @@ class DashboardActivity : AppCompatActivity() {
                 val totalPsn = psnSewa.toFloat() + psnSelesai.toFloat()
                 val valuePsnSewa = (psnSewa / totalPsn) * 100
                 val valuePsnSelesai = (psnSelesai / totalPsn) * 100
-
                 val entries = listOf(
                     PieEntry(valuePsnSewa, "Sewa"),
                     PieEntry(valuePsnSelesai, "Selesai")
                 )
-
                 setPieChart(entries)
+
+                find.tvJumlahPesanan.text = totalPsn.toInt().toString()
             })
+        })
+
+        val kendaraanTersedia = db.dao().getJumlahKendaraan()
+        kendaraanTersedia.observe(this, Observer { arrayTesedia ->
+            var totalKdrnTersedia = 0
+            arrayTesedia.forEach {
+                totalKdrnTersedia += it
+            }
+            find.tvJumlahKendaraan.setText(totalKdrnTersedia.toString())
         })
 
     }
@@ -121,7 +130,7 @@ class DashboardActivity : AppCompatActivity() {
 
         // Konfigurasi tampilan
         pieChart.description.isEnabled = false
-        pieChart.isRotationEnabled = false
+        pieChart.isRotationEnabled = true
         pieChart.setHoleColor(Color.TRANSPARENT)
         pieChart.animateY(1000)
 

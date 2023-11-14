@@ -80,9 +80,6 @@ class InputPesananActivity : AppCompatActivity() {
 //        ketika btn tambah di klik
         find.btnTmbhPsnan.setOnClickListener {
 
-            val idKendaraan = database.dao().getID(selectedItemKendaraan)
-            val dataKdrn = database.dao().getKendaraanByID(idKendaraan)[0]
-
 //            validasi jika kosong
             if (
                 find.inputUsername.text.isNotEmpty() &&
@@ -92,6 +89,9 @@ class InputPesananActivity : AppCompatActivity() {
                 find.inputWaktuSewa.text.isNotEmpty()
 
             ) {
+
+                val idKendaraan = database.dao().getID(selectedItemKendaraan)
+                val dataKdrn = database.dao().getKendaraanByID(idKendaraan)[0]
 
 //                validasi ketika persediaan kosong
                 if (dataKdrn.persediaan != 0) {
@@ -128,10 +128,6 @@ class InputPesananActivity : AppCompatActivity() {
 //        ketika btn update di klik
         find.btnUpdatePsnan.setOnClickListener {
 
-            val idKendaraan = database.dao().getID(selectedItemKendaraan)
-            val dataKdrn = database.dao().getKendaraanByID(idKendaraan)[0]
-            var newPersediaan : Int
-
 //            validasi jika kosong
             if (
                 find.inputUsername.text.isNotEmpty() &&
@@ -140,38 +136,98 @@ class InputPesananActivity : AppCompatActivity() {
                 selectedItemStatus !== "Status" &&
                 find.inputWaktuSewa.text.isNotEmpty()
             ) {
+//                mengambil data lama
+                val dataPesanan = database.dao().getIDPesanan(id.toString().toInt())[0]
+                val oldDataKdrn = database.dao().getKendaraanByID(dataPesanan.id_kendaraan)[0]
+//                mengambil data baru
+                val idKendaraan = database.dao().getID(selectedItemKendaraan)
+                val newDataKdrn = database.dao().getKendaraanByID(idKendaraan)[0]
+//                set persediaan
+                var newPersediaan : Int
+                var oldPersediaan : Int
 
-//                mengubah persediaan
-                if (selectedItemStatus == "Selesai"){
-                    newPersediaan = dataKdrn.persediaan + 1
+                if (oldDataKdrn.id == newDataKdrn.id) {
+                    when {
+                        dataPesanan.status == selectedItemStatus -> {
+                            update(id.toString().toInt(), oldDataKdrn.id)
+                        }
+                        dataPesanan.status == "Selesai" && selectedItemStatus == "Sewa" -> {
+                            newPersediaan = oldDataKdrn.persediaan - 1
+                            if (newPersediaan != 0){
+                                updatePersediaan(newPersediaan, oldDataKdrn.id)
+                                update(id.toString().toInt(), oldDataKdrn.id)
+                            } else {
+                                alert("Tidak dapat diubah karena persediaan kosong")
+                            }
+                        }
+                        dataPesanan.status == "Sewa" && selectedItemStatus == "Selesai" -> {
+                            newPersediaan = oldDataKdrn.persediaan + 1
+                            if (newPersediaan != 0){
+                                updatePersediaan(newPersediaan, oldDataKdrn.id)
+                                update(id.toString().toInt(), oldDataKdrn.id)
+                            } else {
+                                alert("Tidak dapat diubah karena persediaan kosong")
+                            }
+                        }
+                    }
                 } else {
-                    newPersediaan = dataKdrn.persediaan - 1
-                }
-
-//                validasi ketika persediaan menjadi minus
-                if (newPersediaan >= 0){
-                    database.dao().UpdatePesanan(Pesanan(
-                        id.toString().toInt(),
-                        find.inputUsername.text.toString(),
-                        find.inputAlamat.text.toString(),
-                        idKendaraan,
-                        find.inputWaktuSewa.text.toString().toInt(),
-                        selectedItemStatus
-                    )
-                    )
-                    database.dao().updatePersediaan(newPersediaan, idKendaraan)
-                    onBackPressed()
-                    alert("Data berhasil diubah")
-                } else {
-                    alert("Tidak dapat diubah karena persediaan kosong")
+                    when {
+                        dataPesanan.status == "Selesai" && selectedItemStatus == "Selesai" -> {
+                            update(id.toString().toInt(), newDataKdrn.id)
+                        }
+                        dataPesanan.status == "Sewa" && selectedItemStatus == "Sewa" -> {
+                            newPersediaan = newDataKdrn.persediaan - 1
+                            oldPersediaan = oldDataKdrn.persediaan + 1
+                            if (newPersediaan != 0) {
+                                updatePersediaan(newPersediaan, newDataKdrn.id)
+                                updatePersediaan(oldPersediaan, oldDataKdrn.id)
+                                update(id.toString().toInt(), newDataKdrn.id)
+                            } else {
+                                alert("Tidak dapat diubah karena persediaan kosong")
+                            }
+                        }
+                        dataPesanan.status == "Selesai" && selectedItemStatus == "Sewa" -> {
+                            newPersediaan = newDataKdrn.persediaan - 1
+                            if (newPersediaan != 0) {
+                                updatePersediaan(newPersediaan, newDataKdrn.id)
+                                update(id.toString().toInt(), newDataKdrn.id)
+                            } else {
+                                alert("Tidak dapat diubah karena persediaan kosong")
+                            }
+                        }
+                        dataPesanan.status == "Sewa" && selectedItemStatus == "Selesai" -> {
+                            oldPersediaan = oldDataKdrn.persediaan + 1
+                            updatePersediaan(oldPersediaan, oldDataKdrn.id)
+                            update(id.toString().toInt(), newDataKdrn.id)
+                        }
+                    }
                 }
             }else{
-                alert("Ubah data terlebih dahulu")
+                alert("Data tidak boleh kosong")
             }
 
         }
 
     }
+
+    private fun update(idPsn: Int, idKdrnBaru: Int){
+
+            database.dao().UpdatePesanan(Pesanan(
+                idPsn,
+                find.inputUsername.text.toString(),
+                find.inputAlamat.text.toString(),
+                idKdrnBaru,
+                find.inputWaktuSewa.text.toString().toInt(),
+                selectedItemStatus
+            ))
+            onBackPressed()
+            alert("Data berhasil diubah")
+
+    }
+    private fun updatePersediaan(persediaanBaru: Int, idKdrn: Int){
+        database.dao().updatePersediaan(persediaanBaru, idKdrn)
+    }
+
     private fun alert(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
