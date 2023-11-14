@@ -28,6 +28,12 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
         find= ActivityRecyclerviewPesananBinding.inflate(layoutInflater)
         setContentView(find.root)
 
+        find.tambahPesanan.setOnClickListener{
+            startActivity(
+                Intent(this, InputPesananActivity::class.java)
+            )
+        }
+
         find.btnKendaraan.setOnClickListener {
             onBackPressed()
             startActivity(
@@ -47,31 +53,6 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
         find.listPesanan.adapter = adapterP
         find.listPesanan.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
         find.listPesanan.addItemDecoration(DividerItemDecoration(applicationContext, LinearLayoutManager.VERTICAL))
-
-        find.btnTambahPesanan.setOnClickListener {
-            startActivity(
-                Intent(this, InputPesananActivity::class.java ))
-        }
-
-        find.logout.setOnClickListener() {
-
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Konfirmasi Logout")
-            builder.setMessage("Apakah Anda yakin ingin logout?")
-
-            builder.setPositiveButton("ya") { dialog, which ->
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-            builder.setNegativeButton("Tidak") { dialog, which ->
-                // Batal logout, tutup dialog
-                dialog.dismiss()
-            }
-
-            val dialog = builder.create()
-            dialog.show()
-        }
 
     }
     private fun hapusData (pesanan: Pesanan){

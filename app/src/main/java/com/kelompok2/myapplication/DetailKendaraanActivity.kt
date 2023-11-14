@@ -17,6 +17,7 @@ class DetailKendaraanActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(find.root)
 
+//          navbar kembali
         find.btnBack.setOnClickListener {onBackPressed()}
 
 //        mengambil data dari database
@@ -29,9 +30,6 @@ class DetailKendaraanActivity : AppCompatActivity() {
         find.dataKtersedia.setText(data.persediaan.toString())
         find.dataKjenis.setText(data.jenis)
         if (data.jenis == "Motor") find.imgKendaraan.setImageResource(R.drawable.motor)
-
-
-
 
     }
 }

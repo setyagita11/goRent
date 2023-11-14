@@ -17,6 +17,9 @@
             android:name=".bootomsheetcode"
             android:exported="false" />
         <activity
+            android:name=".slide"
+            android:exported="false" />
+        <activity
             android:name=".DetailKendaraanActivity"
             android:exported="false" />
         <activity

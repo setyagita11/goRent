@@ -270,17 +270,37 @@
                 android:fontFamily="sans-serif-condensed-light"
                 android:textColor="@color/bg_elemen"
                 android:textSize="17sp" />
-            <TextView
-                android:id="@+id/Biaya"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:layout_marginLeft="7dp"
-                android:paddingLeft="10dp"
-                android:text="Biaya"
-                android:fontFamily="sans-serif-condensed-light"
-                android:textColor="@color/bg_elemen"
-                android:textSize="17sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp."
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="sans-serif-condensed-light"
+                    android:paddingLeft="10dp"
+                    android:layout_marginLeft="7dp"
+                    android:textColor="@color/bg_elemen"
+                    android:textSize="17sp"/>
+
+                <TextView
+                    android:id="@+id/Biaya"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:paddingLeft="3dp"
+                    android:text="Biaya"
+                    android:fontFamily="sans-serif-condensed-light"
+                    android:textColor="@color/bg_elemen"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+
+
 
 
         </LinearLayout>

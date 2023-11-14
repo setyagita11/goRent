@@ -20,8 +20,7 @@ class LoginActivity : AppCompatActivity() {
 
         val inusername  = find.inputUsername
         val inpassword = find.inputPassword
-        val pasword= "12345678"
-        val user = listOf<String>("guru" ,"murid")
+
         val keyUser = sharedPreferences.getString("username", "")
 
         if (!keyUser.isNullOrEmpty()) {

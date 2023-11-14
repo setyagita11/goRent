@@ -182,14 +182,13 @@
                         android:textColor="@color/bg_elemen"
                         android:textSize="17sp"/>
 
-
                     <TextView
                     android:id="@+id/data_Kharga"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
                     android:fontFamily="sans-serif-condensed-light"
-                    android:paddingLeft="5dp"
+                    android:paddingLeft="3dp"
                     android:text="Harga"
                     android:textColor="@color/bg_elemen"
                     android:textSize="17sp" />

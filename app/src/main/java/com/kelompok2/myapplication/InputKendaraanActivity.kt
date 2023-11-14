@@ -30,9 +30,11 @@ class InputKendaraanActivity : AppCompatActivity() {
         find= ActivityInputKendaraanBinding.inflate(layoutInflater)
         setContentView(find.root)
 
+//          navbar kembali
         find.btnKembaliKendaraan.setOnClickListener{onBackPressed()}
 
-        val id = intent.getStringExtra("idKendaraan")//meletakkan data(idKendaraan(id))
+//          meletakkan data(idKendaraan(id))
+        var id = intent.getStringExtra("idKendaraan")
 
 //        identifikasi mode
         if (id == null){
@@ -63,78 +65,69 @@ class InputKendaraanActivity : AppCompatActivity() {
 
 //        ketika btn tambah di klik
         find.btnTmbh.setOnClickListener {
-            insert()
+
+//            validasi jika kosong
+            if (find.inputMerek.text.isNotEmpty() &&
+                selectedItem !== "Pilih Jenis" &&
+                find.inputHarga.text.isNotEmpty() &&
+                find.inputTersedia.text.isNotEmpty()
+            ){
+
+//                mencegah eror ketika merk sama
+                try {
+                    database.dao().InsertKendaraan(
+                        Kendaraan(0,
+                            find.inputMerek.text.toString(),
+                            selectedItem,
+                            find.inputHarga.text.toString().toInt(),
+                            find.inputTersedia.text.toString().toInt()
+                        )
+                    )
+                    onBackPressed()
+                    alert("Data berhasil ditambahkan")
+
+                } catch (e : Exception){
+                    alert("Merk tersebut sudah tersedia")
+                }
+
+            }else{
+                alert("Isi data terlebih dahulu")
+            }
         }
 
 //        ketika btn update di klik
         find.btnUpdate.setOnClickListener {
-            updateK(id.toString().toInt())
-        }
-    }
-
-    private fun updateK(id: Int) {
-//            validasi jika kosong
-        if (find.inputMerek.text.isNotEmpty()&&
-            selectedItem !== "Pilih Jenis" &&
-            find.inputHarga.text.isNotEmpty()&&
-            find.inputTersedia.text.isNotEmpty()
-        ){
+            if (find.inputMerek.text.isNotEmpty()&&
+                selectedItem !== "Pilih Jenis" &&
+                find.inputHarga.text.isNotEmpty()&&
+                find.inputTersedia.text.isNotEmpty()
+                ){
 
 //                mencegah eror ketika merk sama
-            try {
-                database.dao().UpdateKendaraan(Kendaraan(
-                    id.toString().toInt(),
-                    find.inputMerek.text.toString(),
-                    selectedItem,
-                    find.inputHarga.text.toString().toInt(),
-                    find.inputTersedia.text.toString().toInt())
-                )
-                onBackPressed()
-                alert("Data berhasil diubah")
-
-            } catch (e : Exception) {
-                alert("Merk tersebut sudah tersedia")
-            }
-
-        }else{
-            alert("Ubah data terlebih dahulu")
-        }
-
-    }
-
-    private fun insert() {
-
-//            validasi jika kosong
-        if (find.inputMerek.text.isNotEmpty() &&
-            selectedItem !== "Pilih Jenis" &&
-            find.inputHarga.text.isNotEmpty() &&
-            find.inputTersedia.text.isNotEmpty()
-        ){
-
-//                mencegah eror ketika merk sama
-            try {
-                database.dao().InsertKendaraan(
-                    Kendaraan(0,
+                try {
+                    database.dao().UpdateKendaraan(Kendaraan(
+                        id.toString().toInt(),
                         find.inputMerek.text.toString(),
                         selectedItem,
                         find.inputHarga.text.toString().toInt(),
-                        find.inputTersedia.text.toString().toInt()
+                        find.inputTersedia.text.toString().toInt())
                     )
-                )
-                onBackPressed()
-                alert("Data berhasil ditambahkan")
+                    onBackPressed()
+                    alert("Data berhasil diubah")
 
-            } catch (e : Exception){
-                alert("Merk tersebut sudah tersedia")
+                } catch (e : Exception) {
+                    alert("Merk tersebut sudah tersedia")
+                }
+
+            }else{
+                alert("Ubah data terlebih dahulu")
             }
 
-        }else{
-            alert("Isi data terlebih dahulu")
         }
 
     }
 
-    //    fungtion pemberitahuan
+//    fungtion pemberitahuan
     private fun alert(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }

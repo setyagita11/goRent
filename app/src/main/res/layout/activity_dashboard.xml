@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/linearLayout10"
         android:layout_width="match_parent"
-        android:layout_height="175dp"
+        android:layout_height="100dp"
         android:background="@drawable/shape_top"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,7 +20,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="73dp"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <ImageView
@@ -28,26 +28,24 @@
                 android:layout_width="34dp"
                 android:layout_height="27dp"
                 android:layout_marginStart="17dp"
-                android:layout_marginTop="34dp"
+                android:layout_marginTop="5dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvWellcome"
                 app:srcCompat="@drawable/log_out" />
 
             <ImageView
                 android:id="@+id/imageView7"
                 android:layout_width="34dp"
                 android:layout_height="34dp"
-                android:layout_marginTop="30dp"
                 android:layout_marginEnd="17dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvWellcome"
                 app:srcCompat="@drawable/profile" />
 
             <TextView
                 android:id="@+id/tvWellcome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:fontFamily="@font/alatsi"
                 android:text="Halo, Username"
                 android:textColor="@color/white"
@@ -58,25 +56,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <EditText
-            android:id="@+id/editTextText6"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="18dp"
-            android:background="@drawable/bg_input"
-            android:drawableLeft="@drawable/ic_search"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:fontFamily="sans-serif-condensed-light"
-            android:hint="Cari"
-            android:inputType="text"
-            android:paddingLeft="15dp"
-            android:textColor="#000000"
-            android:textColorHint="#66000000" />
 
     </LinearLayout>
 
@@ -173,35 +152,175 @@
 
     </LinearLayout>
 
-    <com.denzcoskun.imageslider.ImageSlider
-        android:id="@+id/image_slider"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="13dp"
-        app:iss_auto_cycle="true"
-        app:iss_delay="1000"
-        app:iss_period="1000"
-        app:iss_text_align="CENTER"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout10" />
-
-    <androidx.cardview.widget.CardView
-
-        android:layout_width="350dp"
-        android:layout_height="250dp"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="103dp"
+        android:layout_marginBottom="75dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_slider">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
 
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/pieChart"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    </androidx.cardview.widget.CardView>
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/image_slider"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="25dp"
+                app:iss_auto_cycle="true"
+                app:iss_delay="1000"
+                app:iss_period="1000"
+                app:iss_text_align="CENTER"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="25dp"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_slider">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pesanan"
+                    android:textStyle="bold"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-condensed-light"
+                    />
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChart"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="25dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_slider">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/dashboard_data" >
+
+                    <TextView
+                        android:id="@+id/tvJumlahPesanan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed-light"
+                        android:text="0"
+                        android:textColor="@color/black"
+                        android:textSize="30dp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/textView18"
+                        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="28dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="sans-serif-condensed-light"
+                        android:text="TOTAL PESANAN"
+                        android:textColor="#f7ba2c"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="31dp"
+                        android:layout_height="31dp"
+                        android:layout_marginEnd="28dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_checkout_transparan" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/dashboard_data" >
+
+                    <TextView
+                        android:id="@+id/tvJumlahKendaraan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed-light"
+                        android:text="0"
+                        android:textColor="@color/black"
+                        android:textSize="30dp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/textView17"
+                        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="28dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="sans-serif-condensed-light"
+                        android:text="KENDARAAN TERSEDIA"
+                        android:textColor="#ea5459"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="31dp"
+                        android:layout_height="31dp"
+                        android:layout_marginEnd="28dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_car_transparan" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

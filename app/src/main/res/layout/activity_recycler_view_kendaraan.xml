@@ -22,18 +22,6 @@
                 android:layout_height="73dp"
                 android:orientation="horizontal">
 
-
-                <ImageView
-                    android:id="@+id/logout1"
-                    android:layout_width="34dp"
-                    android:layout_height="27dp"
-                    android:layout_marginStart="17dp"
-                    android:layout_marginTop="35dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/log_out" />
-
-
                 <ImageView
                     android:id="@+id/imageView7"
                     android:layout_width="34dp"
@@ -49,13 +37,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="26dp"
-                    android:text="Kendaraan"
                     android:fontFamily="@font/alatsi"
+                    android:text="Kendaraan"
                     android:textColor="@color/white"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/imageView7"
-                    app:layout_constraintStart_toEndOf="@+id/logout1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0" />
 
@@ -123,6 +111,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/tambahKendaraan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -132,16 +121,18 @@
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="match_parent"
-                android:layout_height="31dp"
-                app:srcCompat="@drawable/ic_car_aktif" />
+                android:layout_height="29dp"
+                android:layout_marginTop="2dp"
+                app:srcCompat="@drawable/plus" />
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:fontFamily="sans-serif-condensed-light"
-                android:text="Kendaraan"
+                android:text="Tambah Kendaraan"
+                android:layout_marginTop="2dp"
                 android:textColor="@color/bg_elemen" />
 
         </LinearLayout>
@@ -187,17 +178,5 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         tools:listitem="@layout/adapter_kendaraan" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnTambahKendaraan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        app:backgroundTint="@color/bg_elemen"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_add"
-        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
