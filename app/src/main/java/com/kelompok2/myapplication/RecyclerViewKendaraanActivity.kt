@@ -4,6 +4,10 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -26,7 +30,7 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        find=ActivityRecyclerViewKendaraanBinding.inflate(layoutInflater)
+        find = ActivityRecyclerViewKendaraanBinding.inflate(layoutInflater)
         setContentView(find.root)
 
         adapter = AdapterKendaraan(arrayListOf(),
@@ -53,6 +57,32 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
 
         find.listKndraan.adapter = adapter
         find.listKndraan.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
+
+        find.etSearchKdrn.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
+
+            override fun onTextChanged(key: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (key.isNullOrEmpty()){
+                    tampilDataKendaraan()
+                } else {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val data = db.dao().cariMerk("%$key%")
+                        adapter.setData(data)
+                        withContext(Dispatchers.Main) {
+                            adapter.notifyDataSetChanged()
+                            if (data.isEmpty()){
+                                find.tvNotifSearch.visibility = View.VISIBLE
+                            } else {
+                                find.tvNotifSearch.visibility = View.GONE
+                            }
+                        }
+                    }
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) { }
+
+        })
     }
 
     private fun deletedata(kendaraan: Kendaraan) {
@@ -97,6 +127,7 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
             adapter.setData(data)
             withContext(Dispatchers.Main) {
                 adapter.notifyDataSetChanged()
+                find.tvNotifSearch.visibility = View.GONE
             }
         }
         find.listKndraan.adapter = adapter

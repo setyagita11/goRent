@@ -29,6 +29,8 @@ interface DAO {
     fun updatePersediaan(newPersediaan : Int, id: Int)
     @Query("SELECT id FROM kendaraan WHERE merk = :merk")
     fun getID(merk: String) : Int
+    @Query("SELECT * FROM kendaraan WHERE merk LIKE :key")
+    fun cariMerk(key: String) : List<Kendaraan>
 
       //pesanan
     @Insert
@@ -47,5 +49,9 @@ interface DAO {
     fun getJumlahPesananSewa() : LiveData<Int>
     @Query("SELECT COUNT(*) FROM pesanan WHERE status = 'Selesai'")
     fun getJumlahPesananSelesai() : LiveData<Int>
+    @Query("SELECT * FROM pesanan WHERE nama_pemesan LIKE :key OR alamat LIKE :key")
+    fun cariPesanan(key: String) : List<Pesanan>
+    @Query("SELECT * FROM pesanan WHERE status = :status")
+    fun getByStatus(status: String) : List<Pesanan>
 
 }

@@ -1,12 +1,19 @@
 package com.kelompok2.myapplication
 
+import android.R
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kelompok2.myapplication.GoRent.DBgoRent
 import com.kelompok2.myapplication.GoRent.Pesanan
@@ -53,6 +60,66 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
         find.listPesanan.adapter = adapterP
         find.listPesanan.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
 
+        find.etSearchPsn.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
+
+            override fun onTextChanged(key: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (key.isNullOrEmpty()){
+                    tampilDataPesanan()
+                } else {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val data = db.dao().cariPesanan("%$key%")
+                        adapterP.setDataP(data)
+                        withContext(Dispatchers.Main) {
+                            adapterP.notifyDataSetChanged()
+                            if (data.isEmpty()){
+                                find.tvNotifSearch2.visibility = View.VISIBLE
+                            } else {
+                                find.tvNotifSearch2.visibility = View.GONE
+                            }
+                        }
+                    }
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) { }
+
+        })
+
+        val data = arrayOf("Filter Status", "Sewa", "Selesai")
+        val spinner = find.spnFilter
+        val spinnerAdapter = ArrayAdapter(this, R.layout.simple_spinner_item, data)
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = spinnerAdapter
+        val textView = spinner.getChildAt(0) as? TextView
+        textView?.setTextColor(Color.RED)
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedItem = parent?.getItemAtPosition(position).toString()
+                if (selectedItem == "Filter Status"){
+                    tampilDataPesanan()
+                } else {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val data = db.dao().getByStatus(selectedItem)
+                        adapterP.setDataP(data)
+                        withContext(Dispatchers.Main) {
+                            adapterP.notifyDataSetChanged()
+                            if (data.isEmpty()){
+                                find.tvNotifSearch2.visibility = View.VISIBLE
+                            } else {
+                                find.tvNotifSearch2.visibility = View.GONE
+                            }
+                        }
+                    }                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+        spinner.setSelection(0)
+
     }
     private fun hapusData (pesanan: Pesanan){
         val dialog = AlertDialog.Builder(this)
@@ -92,13 +159,14 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
             adapterP.setDataP(data)
             withContext(Dispatchers.Main) {
                 adapterP.notifyDataSetChanged()
+                find.tvNotifSearch2.visibility = View.GONE
             }
         }
         find.listPesanan.adapter = adapterP
     }
+
     private fun alert (msg:String){
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show()
-
     }
 
 }

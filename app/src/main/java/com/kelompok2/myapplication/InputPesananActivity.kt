@@ -1,17 +1,13 @@
 package com.kelompok2.myapplication
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.kelompok2.myapplication.GoRent.DBgoRent
-import com.kelompok2.myapplication.GoRent.Kendaraan
 import com.kelompok2.myapplication.GoRent.Pesanan
-import com.kelompok2.myapplication.adapter.AdapterPesanan
 import com.kelompok2.myapplication.databinding.ActivityInputPesananBinding
 
 class InputPesananActivity : AppCompatActivity() {
@@ -72,7 +68,6 @@ class InputPesananActivity : AppCompatActivity() {
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 TODO("Not yet implemented")
             }
-
         }
         val indexSpnKendaraan = if (opsiKendaraan == "null") 0 else newData.indexOf(opsiKendaraan)
         spnMerk.setSelection(indexSpnKendaraan)
@@ -95,27 +90,7 @@ class InputPesananActivity : AppCompatActivity() {
 
 //                validasi ketika persediaan kosong
                 if (dataKdrn.persediaan != 0) {
-
-                    database.dao().InsertPesanan(
-                        Pesanan(
-                            0,
-                            find.inputUsername.text.toString(),
-                            find.inputAlamat.text.toString(),
-                            idKendaraan,
-                            find.inputWaktuSewa.text.toString().toInt(),
-                            selectedItemStatus
-                        )
-                    )
-
-//                    mengubah persediaan
-                    if (selectedItemStatus == "Sewa"){
-                        val newPersediaan = dataKdrn.persediaan - 1
-                        database.dao().updatePersediaan(newPersediaan, idKendaraan)
-                    }
-
-                    onBackPressed()
-                    alert("Data berhasil ditambahkan")
-
+                    insertKdrn(idKendaraan, dataKdrn.persediaan)
                 } else {
                     alert("Kendaraan yang anda pilih tidak tersedia")
                 }
@@ -143,8 +118,8 @@ class InputPesananActivity : AppCompatActivity() {
                 val idKendaraan = database.dao().getID(selectedItemKendaraan)
                 val newDataKdrn = database.dao().getKendaraanByID(idKendaraan)[0]
 //                set persediaan
-                var newPersediaan : Int
-                var oldPersediaan : Int
+                var newPersediaan: Int
+                var oldPersediaan: Int
 
                 if (oldDataKdrn.id == newDataKdrn.id) {
                     when {
@@ -161,7 +136,7 @@ class InputPesananActivity : AppCompatActivity() {
                             }
                         }
                         dataPesanan.status == "Sewa" && selectedItemStatus == "Selesai" -> {
-                            newPersediaan = oldDataKdrn.persediaan + 1
+                            newPersediaan = oldDataKdrn.persediaan + 1  
                             if (newPersediaan != 0){
                                 updatePersediaan(newPersediaan, oldDataKdrn.id)
                                 update(id.toString().toInt(), oldDataKdrn.id)
@@ -208,6 +183,27 @@ class InputPesananActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    private fun insertKdrn(idKendaraan: Int, persediaan: Int) {
+        database.dao().InsertPesanan(
+            Pesanan(
+                0,
+                find.inputUsername.text.toString(),
+                find.inputAlamat.text.toString(),
+                idKendaraan,
+                find.inputWaktuSewa.text.toString().toInt(),
+                selectedItemStatus
+            )
+        )
+//        mengubah persediaan
+        if (selectedItemStatus == "Sewa"){
+            val newPersediaan = persediaan - 1
+            database.dao().updatePersediaan(newPersediaan, idKendaraan)
+        }
+
+        onBackPressed()
+        alert("Data berhasil ditambahkan")
     }
 
     private fun update(idPsn: Int, idKdrnBaru: Int){
