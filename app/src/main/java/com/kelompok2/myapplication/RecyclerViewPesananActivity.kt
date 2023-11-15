@@ -52,7 +52,6 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
 
         find.listPesanan.adapter = adapterP
         find.listPesanan.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
-        find.listPesanan.addItemDecoration(DividerItemDecoration(applicationContext, LinearLayoutManager.VERTICAL))
 
     }
     private fun hapusData (pesanan: Pesanan){

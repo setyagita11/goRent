@@ -34,28 +34,18 @@
                 app:srcCompat="@drawable/back_putih" />
 
 
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="17dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/profile" />
-
             <TextView
                 android:id="@+id/headingKendaraan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="Title"
                 android:fontFamily="@font/alatsi"
+                android:text="Title"
                 android:textColor="@color/white"
-                android:textSize="24sp"
+                android:textSize="28sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView7"
-                app:layout_constraintStart_toEndOf="@+id/btnKembaliKendaraan"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.50" />
 

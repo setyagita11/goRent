@@ -53,8 +53,6 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
 
         find.listKndraan.adapter = adapter
         find.listKndraan.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
-        find.listKndraan.addItemDecoration(DividerItemDecoration(applicationContext, LinearLayoutManager.VERTICAL))
-
     }
 
     private fun deletedata(kendaraan: Kendaraan) {
