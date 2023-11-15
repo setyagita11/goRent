@@ -39,6 +39,7 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
             startActivity(
                 Intent(this, InputPesananActivity::class.java)
             )
+            find.etSearchPsn.text.clear()
         }
 
         find.btnKendaraan.setOnClickListener {

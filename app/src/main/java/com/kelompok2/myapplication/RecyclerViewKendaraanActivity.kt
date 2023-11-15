@@ -44,6 +44,7 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
             startActivity(
                 Intent(this, InputKendaraanActivity::class.java)
             )
+            find.etSearchKdrn.text.clear()
         }
 
         find.btnPesanan.setOnClickListener {
