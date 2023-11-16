@@ -46,6 +46,7 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
                 Intent(this, InputKendaraanActivity::class.java)
             )
             find.etSearchKdrn.text.clear()
+            find.etSearchKdrn.clearFocus()
         }
 
 //        navigasi

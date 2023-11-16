@@ -41,6 +41,7 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
                 Intent(this, InputPesananActivity::class.java)
             )
             find.etSearchPsn.text.clear()
+            find.etSearchPsn.clearFocus()
         }
 
 //        navigasi
@@ -88,7 +89,7 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
         })
 
 //        filter status
-        val data = arrayOf("Filter Status", "Sewa", "Selesai")
+        val data = arrayOf("Pilih Status", "Sewa", "Selesai")
         val spinner = find.spnFilter
         val spinnerAdapter = ArrayAdapter(this, R.layout.simple_spinner_item, data)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -98,7 +99,7 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val selectedItem = parent?.getItemAtPosition(position).toString()
-                if (selectedItem == "Filter Status"){
+                if (selectedItem == "Pilih Status"){
                     tampilDataPesanan()
                 } else {
                     CoroutineScope(Dispatchers.IO).launch {

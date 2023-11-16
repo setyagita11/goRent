@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="215dp"
         android:background="@drawable/shape_top"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,11 +51,12 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/alatsi"
             android:paddingLeft="20dp"
-            android:text="Filter Pesanan"
+            android:text="Filter :"
             android:textColor="@color/bg_color"
-            android:textSize="10dp"
+            android:textSize="15dp"
             tools:ignore="TextSizeCheck" />
 
         <androidx.cardview.widget.CardView
@@ -69,7 +70,6 @@
                 android:id="@+id/spnFilter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
                 android:minHeight="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
