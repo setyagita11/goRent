@@ -66,46 +66,38 @@
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
-        android:background="@color/white"
+        android:background="@drawable/nv_beranda"
         android:elevation="20dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <LinearLayout
-            android:id="@+id/btnHome"
+
+        <TextView
+            android:id="@+id/textView3"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="38dp"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="match_parent"
-                android:layout_height="28dp"
-                app:srcCompat="@drawable/ic_home_aktif" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:fontFamily="sans-serif-condensed-light"
-                android:gravity="center"
-                android:text="Beranda"
-                android:textColor="@color/bg_elemen" />
-
-        </LinearLayout>
+            android:fontFamily="sans-serif-condensed-light"
+            android:gravity="center"
+            android:text="Beranda"
+            android:textColor="@color/bg_elemen"
+            app:layout_constraintEnd_toStartOf="@+id/btnKendaraan"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <LinearLayout
             android:id="@+id/btnKendaraan"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="74dp"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:padding="7dp">
+            android:padding="7dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout11"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -127,11 +119,15 @@
         <LinearLayout
             android:id="@+id/btnPesanan"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="74dp"
             android:layout_marginTop="-2.5dp"
+            android:layout_marginEnd="0dp"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnKendaraan"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -152,7 +148,9 @@
 
     </LinearLayout>
 
+
     <ScrollView
+        android:id="@+id/scrol"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="103dp"
@@ -199,21 +197,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pesanan"
-                    android:textStyle="bold"
                     android:layout_marginStart="28dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="sans-serif-condensed-light"
-                    />
+                    android:text="Pesanan"
+                    android:textStyle="bold" />
 
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/pieChart"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="20dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="20dp" />
 
             </androidx.cardview.widget.CardView>
 
@@ -232,9 +229,9 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/dashboard_data" >
+                    android:background="@drawable/dashboard_data">
 
                     <TextView
                         android:id="@+id/tvJumlahPesanan"
@@ -262,6 +259,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
+                        android:id="@+id/imageView6"
                         android:layout_width="31dp"
                         android:layout_height="31dp"
                         android:layout_marginEnd="28dp"
@@ -274,10 +272,10 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="8dp"
-                    android:background="@drawable/dashboard_data" >
+                    android:layout_weight="1"
+                    android:background="@drawable/dashboard_data">
 
                     <TextView
                         android:id="@+id/tvJumlahKendaraan"
@@ -293,8 +291,8 @@
 
                     <TextView
                         android:id="@+id/textView17"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="135dp"
+                        android:layout_height="20dp"
                         android:layout_marginStart="28dp"
                         android:layout_marginTop="16dp"
                         android:fontFamily="sans-serif-condensed-light"
@@ -315,12 +313,23 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+
             </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>
 
-
+    <ImageView
+        android:id="@+id/btnHome"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="-35dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.10"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/tombol_beranda" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
