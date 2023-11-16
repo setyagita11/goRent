@@ -35,6 +35,7 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
         find= ActivityRecyclerviewPesananBinding.inflate(layoutInflater)
         setContentView(find.root)
 
+//        ketika btn tambah ditekan
         find.tambahPesanan.setOnClickListener{
             startActivity(
                 Intent(this, InputPesananActivity::class.java)
@@ -42,13 +43,13 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
             find.etSearchPsn.text.clear()
         }
 
+//        navigasi
         find.btnKendaraan.setOnClickListener {
             onBackPressed()
             startActivity(
                 Intent(this, RecyclerViewKendaraanActivity::class.java)
             )
         }
-
         find.btnHome.setOnClickListener { onBackPressed() }
 
         adapterP = AdapterPesanan(arrayListOf(),
@@ -58,12 +59,13 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
                 }
             })
 
+//        recyclerView
         find.listPesanan.adapter = adapterP
         find.listPesanan.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
 
+//        cari nama & alamat pesanan
         find.etSearchPsn.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
-
             override fun onTextChanged(key: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if (key.isNullOrEmpty()){
                     tampilDataPesanan()
@@ -82,12 +84,11 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
                     }
                 }
             }
-
             override fun afterTextChanged(p0: Editable?) { }
-
         })
 
-        val data = arrayOf("Pilih Status", "Sewa", "Selesai")
+//        filter status
+        val data = arrayOf("Filter Status", "Sewa", "Selesai")
         val spinner = find.spnFilter
         val spinnerAdapter = ArrayAdapter(this, R.layout.simple_spinner_item, data)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -111,13 +112,10 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
                                 find.tvNotifSearch2.visibility = View.GONE
                             }
                         }
-                    }                }
+                    }
+                }
             }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
-
+            override fun onNothingSelected(p0: AdapterView<*>?) { }
         }
         spinner.setSelection(0)
 
@@ -134,6 +132,7 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
             setPositiveButton("hapus"){
                 dialogInterface:DialogInterface,i:Int->
                 dialogInterface.dismiss()
+//                mengecek apakah status sudah selesai
                 if (pesanan.status == "Selesai") {
                     CoroutineScope(Dispatchers.IO).launch {
                         db.dao().DeletePesanan(pesanan)

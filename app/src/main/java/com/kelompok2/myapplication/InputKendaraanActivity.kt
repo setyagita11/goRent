@@ -56,10 +56,7 @@ class InputKendaraanActivity : AppCompatActivity() {
                 selectedItem = parent?.getItemAtPosition(position).toString()
             }
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
-
+            override fun onNothingSelected(p0: AdapterView<*>?) { }
         }
         spinner.setSelection(jenis.toInt())
 

@@ -23,6 +23,7 @@ class InputPesananActivity : AppCompatActivity() {
         find= ActivityInputPesananBinding.inflate(layoutInflater)
         setContentView(find.root)
 
+//        btn kembali
         find.btnKembali.setOnClickListener {onBackPressed()}
 
 //        mengambil id pesanan
@@ -45,11 +46,7 @@ class InputPesananActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedItemStatus = parent?.getItemAtPosition(position).toString()
             }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
-
+            override fun onNothingSelected(p0: AdapterView<*>?) { }
         }
         spnStatus.setSelection(opsiStatus.toInt())
 
@@ -64,10 +61,7 @@ class InputPesananActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedItemKendaraan = parent?.getItemAtPosition(position).toString()
             }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
+            override fun onNothingSelected(p0: AdapterView<*>?) { }
         }
         val indexSpnKendaraan = if (opsiKendaraan == "null") 0 else newData.indexOf(opsiKendaraan)
         spnMerk.setSelection(indexSpnKendaraan)
@@ -117,27 +111,34 @@ class InputPesananActivity : AppCompatActivity() {
 //                mengambil data baru
                 val idKendaraan = database.dao().getID(selectedItemKendaraan)
                 val newDataKdrn = database.dao().getKendaraanByID(idKendaraan)[0]
-//                set persediaan
+//                initial persediaan
                 var newPersediaan: Int
                 var oldPersediaan: Int
-
+//                ketika kendaraan tidak diubah
                 if (oldDataKdrn.id == newDataKdrn.id) {
                     when {
+//                        ketika status tidak diubah
                         dataPesanan.status == selectedItemStatus -> {
                             update(id.toString().toInt(), oldDataKdrn.id)
                         }
+//                        ketika status diubah ke sewa
                         dataPesanan.status == "Selesai" && selectedItemStatus == "Sewa" -> {
                             newPersediaan = oldDataKdrn.persediaan - 1
-                            if (newPersediaan != 0){
+//                            validasi ketika persediaan menjadi minus
+                            if (newPersediaan >= 0){
+//                              menggubah persediaan dan update
                                 updatePersediaan(newPersediaan, oldDataKdrn.id)
                                 update(id.toString().toInt(), oldDataKdrn.id)
                             } else {
                                 alert("Tidak dapat diubah karena persediaan kosong")
                             }
                         }
+//                        ketika status diubah ke selesai
                         dataPesanan.status == "Sewa" && selectedItemStatus == "Selesai" -> {
-                            newPersediaan = oldDataKdrn.persediaan + 1  
-                            if (newPersediaan != 0){
+                            newPersediaan = oldDataKdrn.persediaan + 1
+//                            validasi ketika persediaan menjadi minus
+                            if (newPersediaan >= 0){
+//                              menggubah persediaan dan update
                                 updatePersediaan(newPersediaan, oldDataKdrn.id)
                                 update(id.toString().toInt(), oldDataKdrn.id)
                             } else {
@@ -145,15 +146,20 @@ class InputPesananActivity : AppCompatActivity() {
                             }
                         }
                     }
+//                    ketika kendaraan diubah
                 } else {
                     when {
+//                        ketika status masih tetap selesai
                         dataPesanan.status == "Selesai" && selectedItemStatus == "Selesai" -> {
                             update(id.toString().toInt(), newDataKdrn.id)
                         }
+//                        ketika status masih tetap sewa
                         dataPesanan.status == "Sewa" && selectedItemStatus == "Sewa" -> {
                             newPersediaan = newDataKdrn.persediaan - 1
                             oldPersediaan = oldDataKdrn.persediaan + 1
-                            if (newPersediaan != 0) {
+//                            validasi ketika persediaan menjadi minus
+                            if (newPersediaan >= 0) {
+//                              menggubah persediaan dan update
                                 updatePersediaan(newPersediaan, newDataKdrn.id)
                                 updatePersediaan(oldPersediaan, oldDataKdrn.id)
                                 update(id.toString().toInt(), newDataKdrn.id)
@@ -161,16 +167,21 @@ class InputPesananActivity : AppCompatActivity() {
                                 alert("Tidak dapat diubah karena persediaan kosong")
                             }
                         }
+//                        ketika status diubah menjadi sewa
                         dataPesanan.status == "Selesai" && selectedItemStatus == "Sewa" -> {
                             newPersediaan = newDataKdrn.persediaan - 1
-                            if (newPersediaan != 0) {
+//                            validasi ketika persediaan menjadi minus
+                            if (newPersediaan >= 0) {
+//                              menggubah persediaan dan update
                                 updatePersediaan(newPersediaan, newDataKdrn.id)
                                 update(id.toString().toInt(), newDataKdrn.id)
                             } else {
                                 alert("Tidak dapat diubah karena persediaan kosong")
                             }
                         }
+//                        ketika status diubah menjadi selesai
                         dataPesanan.status == "Sewa" && selectedItemStatus == "Selesai" -> {
+//                            menggubah persediaan dan update
                             oldPersediaan = oldDataKdrn.persediaan + 1
                             updatePersediaan(oldPersediaan, oldDataKdrn.id)
                             update(id.toString().toInt(), newDataKdrn.id)

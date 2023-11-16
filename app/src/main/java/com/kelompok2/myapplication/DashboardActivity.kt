@@ -73,18 +73,21 @@ class DashboardActivity : AppCompatActivity() {
                     PieEntry(valuePsnSewa, "Sewa"),
                     PieEntry(valuePsnSelesai, "Selesai")
                 )
+//                menjalankan pieChart
                 setPieChart(entries)
-
+//                mengisi data card total pesanan
                 find.tvJumlahPesanan.text = totalPsn.toInt().toString()
             })
         })
 
+//        mengambil data secara live
         val kendaraanTersedia = db.dao().getJumlahKendaraan()
         kendaraanTersedia.observe(this, Observer { arrayTesedia ->
             var totalKdrnTersedia = 0
             arrayTesedia.forEach {
                 totalKdrnTersedia += it
             }
+//                mengisi data card total kendaraan
             find.tvJumlahKendaraan.setText(totalKdrnTersedia.toString())
         })
 
@@ -98,7 +101,7 @@ class DashboardActivity : AppCompatActivity() {
 
         builder.setPositiveButton("Ya") { dialog, which ->
 
-//            menghapus data jika
+//            menghapus data jika mengaktifkan ingat saya
             val sharedPreferences = getSharedPreferences("DataUser", Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
             editor.clear()

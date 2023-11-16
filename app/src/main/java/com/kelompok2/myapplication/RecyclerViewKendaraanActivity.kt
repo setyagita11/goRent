@@ -40,6 +40,7 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
                 }
             })
 
+//        ketika btn tambah ditekan
         find.tambahKendaraan.setOnClickListener {
             startActivity(
                 Intent(this, InputKendaraanActivity::class.java)
@@ -47,18 +48,20 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
             find.etSearchKdrn.text.clear()
         }
 
+//        navigasi
         find.btnPesanan.setOnClickListener {
             onBackPressed()
             startActivity(
                 Intent(this, RecyclerViewPesananActivity::class.java)
             )
         }
-
         find.btnHome.setOnClickListener { onBackPressed() }
 
+//        recyclerView
         find.listKndraan.adapter = adapter
         find.listKndraan.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
 
+//        cari nama kendaraan
         find.etSearchKdrn.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
 
