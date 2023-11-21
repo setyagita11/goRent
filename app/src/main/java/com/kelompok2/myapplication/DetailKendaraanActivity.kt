@@ -19,7 +19,7 @@ class DetailKendaraanActivity : AppCompatActivity() {
         setContentView(find.root)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.bg_elemen));
+            getWindow().setStatusBarColor(getResources().getColor(R.color.bg_color));
         }
 
 //          navbar kembali
