@@ -2,6 +2,7 @@ package com.kelompok2.myapplication
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -32,6 +33,10 @@ class RecyclerViewKendaraanActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         find = ActivityRecyclerViewKendaraanBinding.inflate(layoutInflater)
         setContentView(find.root)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.bg_elemen));
+        }
 
         adapter = AdapterKendaraan(arrayListOf(),
             object : AdapterKendaraan.kendaraanv1{

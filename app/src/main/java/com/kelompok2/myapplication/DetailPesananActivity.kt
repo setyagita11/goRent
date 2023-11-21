@@ -1,6 +1,7 @@
 package com.kelompok2.myapplication
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,10 @@ class DetailPesananActivity : AppCompatActivity() {
         find = ActivityDetailPesananBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(find.root)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.bg_elemen));
+        }
 
         find.btnBackPsnan.setOnClickListener {onBackPressed()}
 

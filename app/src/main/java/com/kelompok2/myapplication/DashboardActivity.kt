@@ -3,6 +3,7 @@ package com.kelompok2.myapplication
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -31,6 +32,10 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         find = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(find.root)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.bg_elemen));
+        }
 
 //        navbar
         find.btnKendaraan.setOnClickListener {

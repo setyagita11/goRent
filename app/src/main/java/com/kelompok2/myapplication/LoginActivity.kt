@@ -2,6 +2,7 @@ package com.kelompok2.myapplication
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -15,6 +16,10 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         find = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(find.root)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.bg_elemen));
+        }
 
         val inusername  = find.inputUsername
         val inpassword = find.inputPassword

@@ -2,6 +2,7 @@ package com.kelompok2.myapplication
 
 import android.content.Intent
 import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -29,6 +30,10 @@ class InputKendaraanActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         find= ActivityInputKendaraanBinding.inflate(layoutInflater)
         setContentView(find.root)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.bg_elemen));
+        }
 
 //          navbar kembali
         find.btnKembaliKendaraan.setOnClickListener{onBackPressed()}

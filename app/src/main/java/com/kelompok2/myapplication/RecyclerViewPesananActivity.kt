@@ -4,6 +4,7 @@ import android.R
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -34,6 +35,10 @@ class RecyclerViewPesananActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         find= ActivityRecyclerviewPesananBinding.inflate(layoutInflater)
         setContentView(find.root)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(getResources().getColor(com.kelompok2.myapplication.R.color.bg_elemen));
+        }
 
 //        ketika btn tambah ditekan
         find.tambahPesanan.setOnClickListener{
